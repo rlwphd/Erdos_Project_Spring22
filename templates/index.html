@@ -1,0 +1,51 @@
+{% extends base %}
+
+{% block title %}Erdos Project Spring 2022 Team Frugal{% endblock %}
+
+{% block postamble %}
+  <style>
+    {% include 'styles.css' %}
+  </style>
+{% endblock %}
+
+{% block contents %}
+  <div class="content">
+    <h1>Welcome To The Frugal Project</h1>
+
+    <p>On the market for a new loan or account or credit card? Can you recall the last time that you had to
+	open an account with a bank? You know for that new house or maybe it was for that new hot rod sitting in 
+	your driveway or maybe it was for that fancy new card in your wallet with your name on it. Well, was it an
+	enjoyable process or did it cause you to lose a few hairs and maybe age a few years in the process? If your
+	experience was anything like ours, then this project is	for you! No, we can't make the bank just give you some
+	money but what we did do was summarize all of the complaints from the last several years for all of the major
+	banks in the US, so that you can know which	banks to avoid in the future due to their lack of concern for their
+	customers. Below is an interactive display to help you see who the major offenders are and in what areas they
+	are lacking.</p>
+	
+	<p>Maybe you aren't on the market for a new loan. Maybe, (hopefully) you are the VP from one of these banks
+	over Customer Relations or Consumer Lending and you want to improve your business. Well, not only will our
+	interactive display help you understand where the majority of the complaints are coming in from, but it
+	will also help you see how your bank stacks up compared to your biggest competitors. In fact we not only
+	provide you with the visualizations to help you understand but we took it a step further and created an
+	AI model that will help you classify all of those communications from your disgruntled customers to help
+	you be able to keep track of whether or not your improvements are making a difference. </p>
+	
+	<p> All of the <a href="https://files.consumerfinance.gov/ccdb/complaints.csv.zip">data</a> comes from
+	Consumer Financial Protection Bureau. One of the key roles of the CFPB is to collect and track consumer
+	complaints about various companies and their loan processes.</p>
+	
+	<h4>Visualization of Complaints</h4>
+
+    {{ super() }}
+
+    <h4>Predicting Complaints</h4>
+	
+	<p>While creating the visualizations, we noticed that over half of the compalints in the raw data do not contain
+    the detailed customer complaint. Meaning that some data cleaning needed to happen before we could train our AI model
+	to predict our complaints. We also wanted our model to be able to predict the issue of the complaint and not just the
+	category of the complaint, so our model was trained only on the mortgage loan data. Further improvements will be to
+	include all issues from all product categories. Below details out how well the models were able to learn the necessary
+	features in order to determine the issue of the complaint.</p>
+
+  </div>
+{% endblock %}

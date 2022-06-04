@@ -1,0 +1,511 @@
+,Company,Product,Total Product Complaints
+0,HSBC NORTH AMERICA HOLDINGS INC.,Checking or savings account,1275
+1,HSBC NORTH AMERICA HOLDINGS INC.,Credit card or prepaid card,782
+2,HSBC NORTH AMERICA HOLDINGS INC.,"Credit reporting, credit repair services, or other personal consumer reports",201
+3,HSBC NORTH AMERICA HOLDINGS INC.,Debt collection,1609
+4,HSBC NORTH AMERICA HOLDINGS INC.,"Money transfer, virtual currency, or money service",164
+5,HSBC NORTH AMERICA HOLDINGS INC.,Student loan,8
+6,HSBC NORTH AMERICA HOLDINGS INC.,Vehicle loan or lease,36
+7,HSBC NORTH AMERICA HOLDINGS INC.,Mortgage,4725
+8,HSBC NORTH AMERICA HOLDINGS INC.,"Payday loan, title loan, or personal loan",44
+9,HSBC NORTH AMERICA HOLDINGS INC.,Bank account or service,1018
+10,HSBC NORTH AMERICA HOLDINGS INC.,Credit card,667
+11,HSBC NORTH AMERICA HOLDINGS INC.,Credit reporting,48
+12,HSBC NORTH AMERICA HOLDINGS INC.,Consumer Loan,190
+13,HSBC NORTH AMERICA HOLDINGS INC.,Prepaid card,3
+14,HSBC NORTH AMERICA HOLDINGS INC.,Money transfers,33
+15,HSBC NORTH AMERICA HOLDINGS INC.,Other financial service,4
+16,HSBC NORTH AMERICA HOLDINGS INC.,Payday loan,2
+17,Resurgent Capital Services L.P.,Checking or savings account,4
+18,Resurgent Capital Services L.P.,Credit card or prepaid card,106
+19,Resurgent Capital Services L.P.,"Credit reporting, credit repair services, or other personal consumer reports",2012
+20,Resurgent Capital Services L.P.,Debt collection,8456
+21,Resurgent Capital Services L.P.,"Money transfer, virtual currency, or money service",0
+22,Resurgent Capital Services L.P.,Student loan,4
+23,Resurgent Capital Services L.P.,Vehicle loan or lease,3
+24,Resurgent Capital Services L.P.,Mortgage,144
+25,Resurgent Capital Services L.P.,"Payday loan, title loan, or personal loan",18
+26,Resurgent Capital Services L.P.,Bank account or service,13
+27,Resurgent Capital Services L.P.,Credit card,70
+28,Resurgent Capital Services L.P.,Credit reporting,57
+29,Resurgent Capital Services L.P.,Consumer Loan,30
+30,Resurgent Capital Services L.P.,Prepaid card,0
+31,Resurgent Capital Services L.P.,Money transfers,0
+32,Resurgent Capital Services L.P.,Other financial service,0
+33,Resurgent Capital Services L.P.,Payday loan,1
+34,ERC,Checking or savings account,1
+35,ERC,Credit card or prepaid card,1
+36,ERC,"Credit reporting, credit repair services, or other personal consumer reports",1387
+37,ERC,Debt collection,9616
+38,ERC,"Money transfer, virtual currency, or money service",1
+39,ERC,Student loan,4
+40,ERC,Vehicle loan or lease,0
+41,ERC,Mortgage,1
+42,ERC,"Payday loan, title loan, or personal loan",2
+43,ERC,Bank account or service,5
+44,ERC,Credit card,5
+45,ERC,Credit reporting,60
+46,ERC,Consumer Loan,11
+47,ERC,Prepaid card,1
+48,ERC,Money transfers,0
+49,ERC,Other financial service,1
+50,ERC,Payday loan,2
+51,ALLY FINANCIAL INC.,Checking or savings account,1371
+52,ALLY FINANCIAL INC.,Credit card or prepaid card,43
+53,ALLY FINANCIAL INC.,"Credit reporting, credit repair services, or other personal consumer reports",2767
+54,ALLY FINANCIAL INC.,Debt collection,975
+55,ALLY FINANCIAL INC.,"Money transfer, virtual currency, or money service",106
+56,ALLY FINANCIAL INC.,Student loan,5
+57,ALLY FINANCIAL INC.,Vehicle loan or lease,2555
+58,ALLY FINANCIAL INC.,Mortgage,249
+59,ALLY FINANCIAL INC.,"Payday loan, title loan, or personal loan",108
+60,ALLY FINANCIAL INC.,Bank account or service,777
+61,ALLY FINANCIAL INC.,Credit card,18
+62,ALLY FINANCIAL INC.,Credit reporting,37
+63,ALLY FINANCIAL INC.,Consumer Loan,2094
+64,ALLY FINANCIAL INC.,Prepaid card,0
+65,ALLY FINANCIAL INC.,Money transfers,7
+66,ALLY FINANCIAL INC.,Other financial service,3
+67,ALLY FINANCIAL INC.,Payday loan,0
+68,Santander Consumer USA Holdings Inc.,Checking or savings account,25
+69,Santander Consumer USA Holdings Inc.,Credit card or prepaid card,62
+70,Santander Consumer USA Holdings Inc.,"Credit reporting, credit repair services, or other personal consumer reports",3262
+71,Santander Consumer USA Holdings Inc.,Debt collection,1634
+72,Santander Consumer USA Holdings Inc.,"Money transfer, virtual currency, or money service",9
+73,Santander Consumer USA Holdings Inc.,Student loan,0
+74,Santander Consumer USA Holdings Inc.,Vehicle loan or lease,4010
+75,Santander Consumer USA Holdings Inc.,Mortgage,31
+76,Santander Consumer USA Holdings Inc.,"Payday loan, title loan, or personal loan",114
+77,Santander Consumer USA Holdings Inc.,Bank account or service,54
+78,Santander Consumer USA Holdings Inc.,Credit card,11
+79,Santander Consumer USA Holdings Inc.,Credit reporting,37
+80,Santander Consumer USA Holdings Inc.,Consumer Loan,2537
+81,Santander Consumer USA Holdings Inc.,Prepaid card,0
+82,Santander Consumer USA Holdings Inc.,Money transfers,1
+83,Santander Consumer USA Holdings Inc.,Other financial service,0
+84,Santander Consumer USA Holdings Inc.,Payday loan,1
+85,"SELECT PORTFOLIO SERVICING, INC.",Checking or savings account,7
+86,"SELECT PORTFOLIO SERVICING, INC.",Credit card or prepaid card,3
+87,"SELECT PORTFOLIO SERVICING, INC.","Credit reporting, credit repair services, or other personal consumer reports",248
+88,"SELECT PORTFOLIO SERVICING, INC.",Debt collection,655
+89,"SELECT PORTFOLIO SERVICING, INC.","Money transfer, virtual currency, or money service",5
+90,"SELECT PORTFOLIO SERVICING, INC.",Student loan,1
+91,"SELECT PORTFOLIO SERVICING, INC.",Vehicle loan or lease,2
+92,"SELECT PORTFOLIO SERVICING, INC.",Mortgage,11048
+93,"SELECT PORTFOLIO SERVICING, INC.","Payday loan, title loan, or personal loan",3
+94,"SELECT PORTFOLIO SERVICING, INC.",Bank account or service,10
+95,"SELECT PORTFOLIO SERVICING, INC.",Credit card,0
+96,"SELECT PORTFOLIO SERVICING, INC.",Credit reporting,5
+97,"SELECT PORTFOLIO SERVICING, INC.",Consumer Loan,5
+98,"SELECT PORTFOLIO SERVICING, INC.",Prepaid card,0
+99,"SELECT PORTFOLIO SERVICING, INC.",Money transfers,0
+100,"SELECT PORTFOLIO SERVICING, INC.",Other financial service,0
+101,"SELECT PORTFOLIO SERVICING, INC.",Payday loan,0
+102,BARCLAYS BANK DELAWARE,Checking or savings account,141
+103,BARCLAYS BANK DELAWARE,Credit card or prepaid card,5233
+104,BARCLAYS BANK DELAWARE,"Credit reporting, credit repair services, or other personal consumer reports",1812
+105,BARCLAYS BANK DELAWARE,Debt collection,1115
+106,BARCLAYS BANK DELAWARE,"Money transfer, virtual currency, or money service",28
+107,BARCLAYS BANK DELAWARE,Student loan,1
+108,BARCLAYS BANK DELAWARE,Vehicle loan or lease,1
+109,BARCLAYS BANK DELAWARE,Mortgage,25
+110,BARCLAYS BANK DELAWARE,"Payday loan, title loan, or personal loan",58
+111,BARCLAYS BANK DELAWARE,Bank account or service,129
+112,BARCLAYS BANK DELAWARE,Credit card,3514
+113,BARCLAYS BANK DELAWARE,Credit reporting,76
+114,BARCLAYS BANK DELAWARE,Consumer Loan,20
+115,BARCLAYS BANK DELAWARE,Prepaid card,1
+116,BARCLAYS BANK DELAWARE,Money transfers,4
+117,BARCLAYS BANK DELAWARE,Other financial service,2
+118,BARCLAYS BANK DELAWARE,Payday loan,0
+119,AES/PHEAA,Checking or savings account,4
+120,AES/PHEAA,Credit card or prepaid card,25
+121,AES/PHEAA,"Credit reporting, credit repair services, or other personal consumer reports",1900
+122,AES/PHEAA,Debt collection,856
+123,AES/PHEAA,"Money transfer, virtual currency, or money service",5
+124,AES/PHEAA,Student loan,11391
+125,AES/PHEAA,Vehicle loan or lease,0
+126,AES/PHEAA,Mortgage,1
+127,AES/PHEAA,"Payday loan, title loan, or personal loan",10
+128,AES/PHEAA,Bank account or service,5
+129,AES/PHEAA,Credit card,1
+130,AES/PHEAA,Credit reporting,17
+131,AES/PHEAA,Consumer Loan,5
+132,AES/PHEAA,Prepaid card,0
+133,AES/PHEAA,Money transfers,0
+134,AES/PHEAA,Other financial service,2
+135,AES/PHEAA,Payday loan,0
+136,Ditech Financial LLC,Checking or savings account,4
+137,Ditech Financial LLC,Credit card or prepaid card,1
+138,Ditech Financial LLC,"Credit reporting, credit repair services, or other personal consumer reports",213
+139,Ditech Financial LLC,Debt collection,909
+140,Ditech Financial LLC,"Money transfer, virtual currency, or money service",3
+141,Ditech Financial LLC,Student loan,0
+142,Ditech Financial LLC,Vehicle loan or lease,5
+143,Ditech Financial LLC,Mortgage,13629
+144,Ditech Financial LLC,"Payday loan, title loan, or personal loan",23
+145,Ditech Financial LLC,Bank account or service,33
+146,Ditech Financial LLC,Credit card,0
+147,Ditech Financial LLC,Credit reporting,28
+148,Ditech Financial LLC,Consumer Loan,98
+149,Ditech Financial LLC,Prepaid card,0
+150,Ditech Financial LLC,Money transfers,0
+151,Ditech Financial LLC,Other financial service,6
+152,Ditech Financial LLC,Payday loan,1
+153,"Paypal Holdings, Inc",Checking or savings account,812
+154,"Paypal Holdings, Inc",Credit card or prepaid card,667
+155,"Paypal Holdings, Inc","Credit reporting, credit repair services, or other personal consumer reports",99
+156,"Paypal Holdings, Inc",Debt collection,903
+157,"Paypal Holdings, Inc","Money transfer, virtual currency, or money service",10025
+158,"Paypal Holdings, Inc",Student loan,0
+159,"Paypal Holdings, Inc",Vehicle loan or lease,0
+160,"Paypal Holdings, Inc",Mortgage,2
+161,"Paypal Holdings, Inc","Payday loan, title loan, or personal loan",44
+162,"Paypal Holdings, Inc",Bank account or service,802
+163,"Paypal Holdings, Inc",Credit card,672
+164,"Paypal Holdings, Inc",Credit reporting,3
+165,"Paypal Holdings, Inc",Consumer Loan,167
+166,"Paypal Holdings, Inc",Prepaid card,355
+167,"Paypal Holdings, Inc",Money transfers,921
+168,"Paypal Holdings, Inc",Other financial service,13
+169,"Paypal Holdings, Inc",Payday loan,24
+170,"Bread Financial Holdings, Inc.",Checking or savings account,278
+171,"Bread Financial Holdings, Inc.",Credit card or prepaid card,7084
+172,"Bread Financial Holdings, Inc.","Credit reporting, credit repair services, or other personal consumer reports",4280
+173,"Bread Financial Holdings, Inc.",Debt collection,3554
+174,"Bread Financial Holdings, Inc.","Money transfer, virtual currency, or money service",87
+175,"Bread Financial Holdings, Inc.",Student loan,3
+176,"Bread Financial Holdings, Inc.",Vehicle loan or lease,1
+177,"Bread Financial Holdings, Inc.",Mortgage,9
+178,"Bread Financial Holdings, Inc.","Payday loan, title loan, or personal loan",196
+179,"Bread Financial Holdings, Inc.",Bank account or service,32
+180,"Bread Financial Holdings, Inc.",Credit card,403
+181,"Bread Financial Holdings, Inc.",Credit reporting,37
+182,"Bread Financial Holdings, Inc.",Consumer Loan,27
+183,"Bread Financial Holdings, Inc.",Prepaid card,6
+184,"Bread Financial Holdings, Inc.",Money transfers,6
+185,"Bread Financial Holdings, Inc.",Other financial service,1
+186,"Bread Financial Holdings, Inc.",Payday loan,1
+187,TD BANK US HOLDING COMPANY,Checking or savings account,4316
+188,TD BANK US HOLDING COMPANY,Credit card or prepaid card,2610
+189,TD BANK US HOLDING COMPANY,"Credit reporting, credit repair services, or other personal consumer reports",2471
+190,TD BANK US HOLDING COMPANY,Debt collection,1305
+191,TD BANK US HOLDING COMPANY,"Money transfer, virtual currency, or money service",385
+192,TD BANK US HOLDING COMPANY,Student loan,1
+193,TD BANK US HOLDING COMPANY,Vehicle loan or lease,421
+194,TD BANK US HOLDING COMPANY,Mortgage,1406
+195,TD BANK US HOLDING COMPANY,"Payday loan, title loan, or personal loan",189
+196,TD BANK US HOLDING COMPANY,Bank account or service,3060
+197,TD BANK US HOLDING COMPANY,Credit card,1303
+198,TD BANK US HOLDING COMPANY,Credit reporting,41
+199,TD BANK US HOLDING COMPANY,Consumer Loan,433
+200,TD BANK US HOLDING COMPANY,Prepaid card,13
+201,TD BANK US HOLDING COMPANY,Money transfers,36
+202,TD BANK US HOLDING COMPANY,Other financial service,11
+203,TD BANK US HOLDING COMPANY,Payday loan,1
+204,ENCORE CAPITAL GROUP INC.,Checking or savings account,8
+205,ENCORE CAPITAL GROUP INC.,Credit card or prepaid card,172
+206,ENCORE CAPITAL GROUP INC.,"Credit reporting, credit repair services, or other personal consumer reports",1821
+207,ENCORE CAPITAL GROUP INC.,Debt collection,16148
+208,ENCORE CAPITAL GROUP INC.,"Money transfer, virtual currency, or money service",3
+209,ENCORE CAPITAL GROUP INC.,Student loan,2
+210,ENCORE CAPITAL GROUP INC.,Vehicle loan or lease,4
+211,ENCORE CAPITAL GROUP INC.,Mortgage,23
+212,ENCORE CAPITAL GROUP INC.,"Payday loan, title loan, or personal loan",6
+213,ENCORE CAPITAL GROUP INC.,Bank account or service,18
+214,ENCORE CAPITAL GROUP INC.,Credit card,178
+215,ENCORE CAPITAL GROUP INC.,Credit reporting,107
+216,ENCORE CAPITAL GROUP INC.,Consumer Loan,80
+217,ENCORE CAPITAL GROUP INC.,Prepaid card,2
+218,ENCORE CAPITAL GROUP INC.,Money transfers,0
+219,ENCORE CAPITAL GROUP INC.,Other financial service,3
+220,ENCORE CAPITAL GROUP INC.,Payday loan,5
+221,DISCOVER BANK,Checking or savings account,645
+222,DISCOVER BANK,Credit card or prepaid card,5930
+223,DISCOVER BANK,"Credit reporting, credit repair services, or other personal consumer reports",3537
+224,DISCOVER BANK,Debt collection,2382
+225,DISCOVER BANK,"Money transfer, virtual currency, or money service",89
+226,DISCOVER BANK,Student loan,1352
+227,DISCOVER BANK,Vehicle loan or lease,2
+228,DISCOVER BANK,Mortgage,156
+229,DISCOVER BANK,"Payday loan, title loan, or personal loan",141
+230,DISCOVER BANK,Bank account or service,487
+231,DISCOVER BANK,Credit card,4264
+232,DISCOVER BANK,Credit reporting,69
+233,DISCOVER BANK,Consumer Loan,123
+234,DISCOVER BANK,Prepaid card,2
+235,DISCOVER BANK,Money transfers,10
+236,DISCOVER BANK,Other financial service,2
+237,DISCOVER BANK,Payday loan,0
+238,PNC Bank N.A.,Checking or savings account,5489
+239,PNC Bank N.A.,Credit card or prepaid card,759
+240,PNC Bank N.A.,"Credit reporting, credit repair services, or other personal consumer reports",663
+241,PNC Bank N.A.,Debt collection,440
+242,PNC Bank N.A.,"Money transfer, virtual currency, or money service",1637
+243,PNC Bank N.A.,Student loan,104
+244,PNC Bank N.A.,Vehicle loan or lease,351
+245,PNC Bank N.A.,Mortgage,5971
+246,PNC Bank N.A.,"Payday loan, title loan, or personal loan",325
+247,PNC Bank N.A.,Bank account or service,3490
+248,PNC Bank N.A.,Credit card,494
+249,PNC Bank N.A.,Credit reporting,29
+250,PNC Bank N.A.,Consumer Loan,335
+251,PNC Bank N.A.,Prepaid card,13
+252,PNC Bank N.A.,Money transfers,39
+253,PNC Bank N.A.,Other financial service,12
+254,PNC Bank N.A.,Payday loan,4
+255,PORTFOLIO RECOVERY ASSOCIATES INC,Checking or savings account,1
+256,PORTFOLIO RECOVERY ASSOCIATES INC,Credit card or prepaid card,127
+257,PORTFOLIO RECOVERY ASSOCIATES INC,"Credit reporting, credit repair services, or other personal consumer reports",3047
+258,PORTFOLIO RECOVERY ASSOCIATES INC,Debt collection,17291
+259,PORTFOLIO RECOVERY ASSOCIATES INC,"Money transfer, virtual currency, or money service",3
+260,PORTFOLIO RECOVERY ASSOCIATES INC,Student loan,2
+261,PORTFOLIO RECOVERY ASSOCIATES INC,Vehicle loan or lease,8
+262,PORTFOLIO RECOVERY ASSOCIATES INC,Mortgage,11
+263,PORTFOLIO RECOVERY ASSOCIATES INC,"Payday loan, title loan, or personal loan",2
+264,PORTFOLIO RECOVERY ASSOCIATES INC,Bank account or service,9
+265,PORTFOLIO RECOVERY ASSOCIATES INC,Credit card,103
+266,PORTFOLIO RECOVERY ASSOCIATES INC,Credit reporting,80
+267,PORTFOLIO RECOVERY ASSOCIATES INC,Consumer Loan,47
+268,PORTFOLIO RECOVERY ASSOCIATES INC,Prepaid card,1
+269,PORTFOLIO RECOVERY ASSOCIATES INC,Money transfers,0
+270,PORTFOLIO RECOVERY ASSOCIATES INC,Other financial service,0
+271,PORTFOLIO RECOVERY ASSOCIATES INC,Payday loan,4
+272,AMERICAN EXPRESS COMPANY,Checking or savings account,661
+273,AMERICAN EXPRESS COMPANY,Credit card or prepaid card,10275
+274,AMERICAN EXPRESS COMPANY,"Credit reporting, credit repair services, or other personal consumer reports",2520
+275,AMERICAN EXPRESS COMPANY,Debt collection,2024
+276,AMERICAN EXPRESS COMPANY,"Money transfer, virtual currency, or money service",112
+277,AMERICAN EXPRESS COMPANY,Student loan,1
+278,AMERICAN EXPRESS COMPANY,Vehicle loan or lease,2
+279,AMERICAN EXPRESS COMPANY,Mortgage,11
+280,AMERICAN EXPRESS COMPANY,"Payday loan, title loan, or personal loan",56
+281,AMERICAN EXPRESS COMPANY,Bank account or service,447
+282,AMERICAN EXPRESS COMPANY,Credit card,6669
+283,AMERICAN EXPRESS COMPANY,Credit reporting,54
+284,AMERICAN EXPRESS COMPANY,Consumer Loan,17
+285,AMERICAN EXPRESS COMPANY,Prepaid card,638
+286,AMERICAN EXPRESS COMPANY,Money transfers,11
+287,AMERICAN EXPRESS COMPANY,Other financial service,21
+288,AMERICAN EXPRESS COMPANY,Payday loan,0
+289,NATIONSTAR MORTGAGE,Checking or savings account,10
+290,NATIONSTAR MORTGAGE,Credit card or prepaid card,7
+291,NATIONSTAR MORTGAGE,"Credit reporting, credit repair services, or other personal consumer reports",745
+292,NATIONSTAR MORTGAGE,Debt collection,643
+293,NATIONSTAR MORTGAGE,"Money transfer, virtual currency, or money service",14
+294,NATIONSTAR MORTGAGE,Student loan,3
+295,NATIONSTAR MORTGAGE,Vehicle loan or lease,1
+296,NATIONSTAR MORTGAGE,Mortgage,24408
+297,NATIONSTAR MORTGAGE,"Payday loan, title loan, or personal loan",8
+298,NATIONSTAR MORTGAGE,Bank account or service,29
+299,NATIONSTAR MORTGAGE,Credit card,0
+300,NATIONSTAR MORTGAGE,Credit reporting,16
+301,NATIONSTAR MORTGAGE,Consumer Loan,13
+302,NATIONSTAR MORTGAGE,Prepaid card,0
+303,NATIONSTAR MORTGAGE,Money transfers,1
+304,NATIONSTAR MORTGAGE,Other financial service,1
+305,NATIONSTAR MORTGAGE,Payday loan,0
+306,U.S. BANCORP,Checking or savings account,4361
+307,U.S. BANCORP,Credit card or prepaid card,5641
+308,U.S. BANCORP,"Credit reporting, credit repair services, or other personal consumer reports",1675
+309,U.S. BANCORP,Debt collection,1189
+310,U.S. BANCORP,"Money transfer, virtual currency, or money service",340
+311,U.S. BANCORP,Student loan,89
+312,U.S. BANCORP,Vehicle loan or lease,536
+313,U.S. BANCORP,Mortgage,7086
+314,U.S. BANCORP,"Payday loan, title loan, or personal loan",198
+315,U.S. BANCORP,Bank account or service,3726
+316,U.S. BANCORP,Credit card,2448
+317,U.S. BANCORP,Credit reporting,62
+318,U.S. BANCORP,Consumer Loan,574
+319,U.S. BANCORP,Prepaid card,322
+320,U.S. BANCORP,Money transfers,34
+321,U.S. BANCORP,Other financial service,16
+322,U.S. BANCORP,Payday loan,18
+323,Ocwen Financial Corporation,Checking or savings account,6
+324,Ocwen Financial Corporation,Credit card or prepaid card,7
+325,Ocwen Financial Corporation,"Credit reporting, credit repair services, or other personal consumer reports",682
+326,Ocwen Financial Corporation,Debt collection,984
+327,Ocwen Financial Corporation,"Money transfer, virtual currency, or money service",17
+328,Ocwen Financial Corporation,Student loan,2
+329,Ocwen Financial Corporation,Vehicle loan or lease,2
+330,Ocwen Financial Corporation,Mortgage,30703
+331,Ocwen Financial Corporation,"Payday loan, title loan, or personal loan",3
+332,Ocwen Financial Corporation,Bank account or service,62
+333,Ocwen Financial Corporation,Credit card,6
+334,Ocwen Financial Corporation,Credit reporting,42
+335,Ocwen Financial Corporation,Consumer Loan,32
+336,Ocwen Financial Corporation,Prepaid card,0
+337,Ocwen Financial Corporation,Money transfers,2
+338,Ocwen Financial Corporation,Other financial service,3
+339,Ocwen Financial Corporation,Payday loan,1
+340,"Navient Solutions, LLC.",Checking or savings account,4
+341,"Navient Solutions, LLC.",Credit card or prepaid card,15
+342,"Navient Solutions, LLC.","Credit reporting, credit repair services, or other personal consumer reports",2530
+343,"Navient Solutions, LLC.",Debt collection,3671
+344,"Navient Solutions, LLC.","Money transfer, virtual currency, or money service",10
+345,"Navient Solutions, LLC.",Student loan,30053
+346,"Navient Solutions, LLC.",Vehicle loan or lease,2
+347,"Navient Solutions, LLC.",Mortgage,9
+348,"Navient Solutions, LLC.","Payday loan, title loan, or personal loan",22
+349,"Navient Solutions, LLC.",Bank account or service,15
+350,"Navient Solutions, LLC.",Credit card,0
+351,"Navient Solutions, LLC.",Credit reporting,31
+352,"Navient Solutions, LLC.",Consumer Loan,36
+353,"Navient Solutions, LLC.",Prepaid card,0
+354,"Navient Solutions, LLC.",Money transfers,0
+355,"Navient Solutions, LLC.",Other financial service,7
+356,"Navient Solutions, LLC.",Payday loan,1
+357,SYNCHRONY FINANCIAL,Checking or savings account,515
+358,SYNCHRONY FINANCIAL,Credit card or prepaid card,12009
+359,SYNCHRONY FINANCIAL,"Credit reporting, credit repair services, or other personal consumer reports",6642
+360,SYNCHRONY FINANCIAL,Debt collection,6522
+361,SYNCHRONY FINANCIAL,"Money transfer, virtual currency, or money service",387
+362,SYNCHRONY FINANCIAL,Student loan,2
+363,SYNCHRONY FINANCIAL,Vehicle loan or lease,60
+364,SYNCHRONY FINANCIAL,Mortgage,216
+365,SYNCHRONY FINANCIAL,"Payday loan, title loan, or personal loan",458
+366,SYNCHRONY FINANCIAL,Bank account or service,746
+367,SYNCHRONY FINANCIAL,Credit card,8779
+368,SYNCHRONY FINANCIAL,Credit reporting,183
+369,SYNCHRONY FINANCIAL,Consumer Loan,682
+370,SYNCHRONY FINANCIAL,Prepaid card,20
+371,SYNCHRONY FINANCIAL,Money transfers,9
+372,SYNCHRONY FINANCIAL,Other financial service,4
+373,SYNCHRONY FINANCIAL,Payday loan,42
+374,CAPITAL ONE FINANCIAL CORPORATION,Checking or savings account,4841
+375,CAPITAL ONE FINANCIAL CORPORATION,Credit card or prepaid card,19498
+376,CAPITAL ONE FINANCIAL CORPORATION,"Credit reporting, credit repair services, or other personal consumer reports",14037
+377,CAPITAL ONE FINANCIAL CORPORATION,Debt collection,8195
+378,CAPITAL ONE FINANCIAL CORPORATION,"Money transfer, virtual currency, or money service",461
+379,CAPITAL ONE FINANCIAL CORPORATION,Student loan,5
+380,CAPITAL ONE FINANCIAL CORPORATION,Vehicle loan or lease,1534
+381,CAPITAL ONE FINANCIAL CORPORATION,Mortgage,1229
+382,CAPITAL ONE FINANCIAL CORPORATION,"Payday loan, title loan, or personal loan",156
+383,CAPITAL ONE FINANCIAL CORPORATION,Bank account or service,2445
+384,CAPITAL ONE FINANCIAL CORPORATION,Credit card,12920
+385,CAPITAL ONE FINANCIAL CORPORATION,Credit reporting,363
+386,CAPITAL ONE FINANCIAL CORPORATION,Consumer Loan,1212
+387,CAPITAL ONE FINANCIAL CORPORATION,Prepaid card,21
+388,CAPITAL ONE FINANCIAL CORPORATION,Money transfers,31
+389,CAPITAL ONE FINANCIAL CORPORATION,Other financial service,18
+390,CAPITAL ONE FINANCIAL CORPORATION,Payday loan,5
+391,"CITIBANK, N.A.",Checking or savings account,7561
+392,"CITIBANK, N.A.",Credit card or prepaid card,19909
+393,"CITIBANK, N.A.","Credit reporting, credit repair services, or other personal consumer reports",6877
+394,"CITIBANK, N.A.",Debt collection,6505
+395,"CITIBANK, N.A.","Money transfer, virtual currency, or money service",616
+396,"CITIBANK, N.A.",Student loan,734
+397,"CITIBANK, N.A.",Vehicle loan or lease,33
+398,"CITIBANK, N.A.",Mortgage,10212
+399,"CITIBANK, N.A.","Payday loan, title loan, or personal loan",179
+400,"CITIBANK, N.A.",Bank account or service,4450
+401,"CITIBANK, N.A.",Credit card,16817
+402,"CITIBANK, N.A.",Credit reporting,267
+403,"CITIBANK, N.A.",Consumer Loan,765
+404,"CITIBANK, N.A.",Prepaid card,206
+405,"CITIBANK, N.A.",Money transfers,102
+406,"CITIBANK, N.A.",Other financial service,34
+407,"CITIBANK, N.A.",Payday loan,22
+408,JPMORGAN CHASE & CO.,Checking or savings account,16077
+409,JPMORGAN CHASE & CO.,Credit card or prepaid card,14011
+410,JPMORGAN CHASE & CO.,"Credit reporting, credit repair services, or other personal consumer reports",6247
+411,JPMORGAN CHASE & CO.,Debt collection,3862
+412,JPMORGAN CHASE & CO.,"Money transfer, virtual currency, or money service",2458
+413,JPMORGAN CHASE & CO.,Student loan,873
+414,JPMORGAN CHASE & CO.,Vehicle loan or lease,1158
+415,JPMORGAN CHASE & CO.,Mortgage,23482
+416,JPMORGAN CHASE & CO.,"Payday loan, title loan, or personal loan",196
+417,JPMORGAN CHASE & CO.,Bank account or service,9816
+418,JPMORGAN CHASE & CO.,Credit card,10373
+419,JPMORGAN CHASE & CO.,Credit reporting,192
+420,JPMORGAN CHASE & CO.,Consumer Loan,1029
+421,JPMORGAN CHASE & CO.,Prepaid card,32
+422,JPMORGAN CHASE & CO.,Money transfers,228
+423,JPMORGAN CHASE & CO.,Other financial service,60
+424,JPMORGAN CHASE & CO.,Payday loan,6
+425,WELLS FARGO & COMPANY,Checking or savings account,13603
+426,WELLS FARGO & COMPANY,Credit card or prepaid card,4823
+427,WELLS FARGO & COMPANY,"Credit reporting, credit repair services, or other personal consumer reports",5640
+428,WELLS FARGO & COMPANY,Debt collection,3799
+429,WELLS FARGO & COMPANY,"Money transfer, virtual currency, or money service",2158
+430,WELLS FARGO & COMPANY,Student loan,1855
+431,WELLS FARGO & COMPANY,Vehicle loan or lease,1506
+432,WELLS FARGO & COMPANY,Mortgage,41895
+433,WELLS FARGO & COMPANY,"Payday loan, title loan, or personal loan",747
+434,WELLS FARGO & COMPANY,Bank account or service,13333
+435,WELLS FARGO & COMPANY,Credit card,4041
+436,WELLS FARGO & COMPANY,Credit reporting,157
+437,WELLS FARGO & COMPANY,Consumer Loan,2528
+438,WELLS FARGO & COMPANY,Prepaid card,36
+439,WELLS FARGO & COMPANY,Money transfers,254
+440,WELLS FARGO & COMPANY,Other financial service,57
+441,WELLS FARGO & COMPANY,Payday loan,23
+442,"BANK OF AMERICA, NATIONAL ASSOCIATION",Checking or savings account,18348
+443,"BANK OF AMERICA, NATIONAL ASSOCIATION",Credit card or prepaid card,11967
+444,"BANK OF AMERICA, NATIONAL ASSOCIATION","Credit reporting, credit repair services, or other personal consumer reports",5304
+445,"BANK OF AMERICA, NATIONAL ASSOCIATION",Debt collection,3923
+446,"BANK OF AMERICA, NATIONAL ASSOCIATION","Money transfer, virtual currency, or money service",2195
+447,"BANK OF AMERICA, NATIONAL ASSOCIATION",Student loan,140
+448,"BANK OF AMERICA, NATIONAL ASSOCIATION",Vehicle loan or lease,470
+449,"BANK OF AMERICA, NATIONAL ASSOCIATION",Mortgage,46069
+450,"BANK OF AMERICA, NATIONAL ASSOCIATION","Payday loan, title loan, or personal loan",283
+451,"BANK OF AMERICA, NATIONAL ASSOCIATION",Bank account or service,13917
+452,"BANK OF AMERICA, NATIONAL ASSOCIATION",Credit card,9111
+453,"BANK OF AMERICA, NATIONAL ASSOCIATION",Credit reporting,126
+454,"BANK OF AMERICA, NATIONAL ASSOCIATION",Consumer Loan,681
+455,"BANK OF AMERICA, NATIONAL ASSOCIATION",Prepaid card,55
+456,"BANK OF AMERICA, NATIONAL ASSOCIATION",Money transfers,271
+457,"BANK OF AMERICA, NATIONAL ASSOCIATION",Other financial service,73
+458,"BANK OF AMERICA, NATIONAL ASSOCIATION",Payday loan,14
+459,Experian Information Solutions Inc.,Checking or savings account,37
+460,Experian Information Solutions Inc.,Credit card or prepaid card,415
+461,Experian Information Solutions Inc.,"Credit reporting, credit repair services, or other personal consumer reports",261218
+462,Experian Information Solutions Inc.,Debt collection,6380
+463,Experian Information Solutions Inc.,"Money transfer, virtual currency, or money service",28
+464,Experian Information Solutions Inc.,Student loan,70
+465,Experian Information Solutions Inc.,Vehicle loan or lease,143
+466,Experian Information Solutions Inc.,Mortgage,109
+467,Experian Information Solutions Inc.,"Payday loan, title loan, or personal loan",62
+468,Experian Information Solutions Inc.,Bank account or service,22
+469,Experian Information Solutions Inc.,Credit card,50
+470,Experian Information Solutions Inc.,Credit reporting,45378
+471,Experian Information Solutions Inc.,Consumer Loan,40
+472,Experian Information Solutions Inc.,Prepaid card,0
+473,Experian Information Solutions Inc.,Money transfers,0
+474,Experian Information Solutions Inc.,Other financial service,7
+475,Experian Information Solutions Inc.,Payday loan,2
+476,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Checking or savings account,24
+477,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Credit card or prepaid card,322
+478,"TRANSUNION INTERMEDIATE HOLDINGS, INC.","Credit reporting, credit repair services, or other personal consumer reports",290172
+479,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Debt collection,6504
+480,"TRANSUNION INTERMEDIATE HOLDINGS, INC.","Money transfer, virtual currency, or money service",17
+481,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Student loan,78
+482,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Vehicle loan or lease,109
+483,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Mortgage,99
+484,"TRANSUNION INTERMEDIATE HOLDINGS, INC.","Payday loan, title loan, or personal loan",48
+485,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Bank account or service,13
+486,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Credit card,20
+487,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Credit reporting,39821
+488,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Consumer Loan,28
+489,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Prepaid card,0
+490,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Money transfers,0
+491,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Other financial service,1
+492,"TRANSUNION INTERMEDIATE HOLDINGS, INC.",Payday loan,1
+493,"EQUIFAX, INC.",Checking or savings account,19
+494,"EQUIFAX, INC.",Credit card or prepaid card,360
+495,"EQUIFAX, INC.","Credit reporting, credit repair services, or other personal consumer reports",377417
+496,"EQUIFAX, INC.",Debt collection,6979
+497,"EQUIFAX, INC.","Money transfer, virtual currency, or money service",13
+498,"EQUIFAX, INC.",Student loan,78
+499,"EQUIFAX, INC.",Vehicle loan or lease,95
+500,"EQUIFAX, INC.",Mortgage,137
+501,"EQUIFAX, INC.","Payday loan, title loan, or personal loan",37
+502,"EQUIFAX, INC.",Bank account or service,14
+503,"EQUIFAX, INC.",Credit card,46
+504,"EQUIFAX, INC.",Credit reporting,48128
+505,"EQUIFAX, INC.",Consumer Loan,55
+506,"EQUIFAX, INC.",Prepaid card,1
+507,"EQUIFAX, INC.",Money transfers,0
+508,"EQUIFAX, INC.",Other financial service,3
+509,"EQUIFAX, INC.",Payday loan,0
