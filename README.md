@@ -8,3 +8,9 @@ Erdos Institute hosts a data science boot camp each year and this repository con
 We have chosen to analyze financial consumer complaints for being able to rate different financial institutions.
 
 --Currently a work in progress
+
+To do: 
+1) Calculate the naive classifier baseline. 
+2) Plot PR and ROC-AUC curves for 10%-RoBERTa model.
+3) Hyperparameter tune training epochs and learning rate for the final model. 
+
