@@ -34,13 +34,13 @@ def load_data():
     # and storing them in a dictionary so that they can be called by their file name
     raw_dfs = {}
     mort_dfs = {}    
-    for file in os.listdir('./data'):
+    for file in os.listdir(os.path.join(os.path.dirname(__file__), 'data'):
         if file.endswith(".csv") and file != "complaints.csv" and file != "mortgage_complaints.csv" and file != "Raw_Percentage_Missing.csv" and "Mortgage" not in file:
             name = file[:-4]
-            raw_dfs[name] = pd.read_csv(os.path.join('./data',file))
+            raw_dfs[name] = pd.read_csv(os.path.join(os.path.dirname(__file__), 'data',file))
         elif file.endswith(".csv") and "Mortgage" in file:
             name = file[:-4]
-            mort_dfs[name] = pd.read_csv(os.path.join('./data',file))
+            mort_dfs[name] = pd.read_csv(os.path.join(os.path.dirname(__file__), 'data',file))
 
     # Defining the categories for plotting purposes
     raw_titles = ['Product Category', 'Issue Category', 'Sub-product Category', 'State', 'Consumer Respone', 'Timely Response', 'Tags Category', 'Company Response']
@@ -49,10 +49,10 @@ def load_data():
     mort_titles = raw_titles[1:]
     
     # Loading the possible values for each category
-    with open("./data/Category_names.txt", "rb") as f:
+    with open(os.path.join(os.path.dirname(__file__), 'data', "Category_names.txt"), "rb") as f:
         raw_list = pickle.load(f)
 
-    with open("./data/Mortgage_category_names.txt", "rb") as f:
+    with open(os.path.join(os.path.dirname(__file__), 'data', "Mortgage_category_names.txt"), "rb") as f:
         mort_list = pickle.load(f)
 
     return raw_dfs, mort_dfs, raw_category, mort_category, raw_titles, mort_titles, raw_list, mort_list
