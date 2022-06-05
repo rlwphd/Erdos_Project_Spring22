@@ -11,7 +11,7 @@ from bokeh.models import (Button, CategoricalColorMapper, ColumnDataSource, Hove
 from bokeh.palettes import Spectral6
 from bokeh.plotting import figure, show
 
-from load import load_data
+from .load import load_data
 
 raw_dfs, mort_dfs, raw_category, mort_category, raw_titles, mort_titles, raw_list, mort_list = load_data()
 
