@@ -34,7 +34,7 @@ def load_data():
     # and storing them in a dictionary so that they can be called by their file name
     raw_dfs = {}
     mort_dfs = {}    
-    for file in os.listdir(os.path.join(os.path.dirname(__file__), 'data'):
+    for file in os.listdir(os.path.join(os.path.dirname(__file__), 'data')):
         if file.endswith(".csv") and file != "complaints.csv" and file != "mortgage_complaints.csv" and file != "Raw_Percentage_Missing.csv" and "Mortgage" not in file:
             name = file[:-4]
             raw_dfs[name] = pd.read_csv(os.path.join(os.path.dirname(__file__), 'data',file))
