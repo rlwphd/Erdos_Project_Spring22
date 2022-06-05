@@ -1,110 +1,75 @@
+import os
+import pickle
 import pandas as pd
 import numpy as np
 from joblib import load
 
 from bokeh.io import curdoc
-from bokeh.layouts import layout
-from bokeh.models import (Button, CategoricalColorMapper, ColumnDataSource,
-                          HoverTool, Label, SingleIntervalTicker, Slider)
+from bokeh.layouts import layout, column, row
+from bokeh.models import (Button, CategoricalColorMapper, ColumnDataSource, HoverTool,
+                          Label, Paragraph, SingleIntervalTicker, Slider, Select)
 from bokeh.palettes import Spectral6
-from bokeh.plotting import figure
+from bokeh.plotting import figure, show
 
-from .data import process_data
+from load import load_data
 
-fertility_df, life_expectancy_df, population_df_size, regions_df, years, regions_list = process_data()
+raw_dfs, mort_dfs, raw_category, mort_category, raw_titles, mort_titles, raw_list, mort_list = load_data()
 
-df = pd.concat({'fertility': fertility_df,
-                'life': life_expectancy_df,
-                'population': population_df_size},
-               axis=1)
+# Creating the list of company names and setting up the total number of complaints text
+company_list = raw_dfs['Top30Companies_TotalComplaints'].iloc[:,0].to_list()
+tot_complaints = Paragraph(text="Total Number of Complaints for {}:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]))
+tot_comp_val = Paragraph(text=str(raw_dfs['Top30Companies_TotalComplaints'].iloc[0,1]))
 
-data = {}
+# Defining which category I'm after and setting up the total number of categorical complaints text
+cat_df = '{}_complaints_TopCompanies'.format(raw_category[0])
+cat_complaints = Paragraph(text="Total Number of Complaints in the {} Category:".format(raw_category[0]))
+cat_comp_val = Paragraph(text=str(raw_dfs[cat_df].iloc[0,1]))
 
-regions_df.rename({'Group':'region'}, axis='columns', inplace=True)
-for year in years:
-    df_year = df.iloc[:,df.columns.get_level_values(1)==year]
-    df_year.columns = df_year.columns.droplevel(1)
-    data[year] = df_year.join(regions_df.region).reset_index().to_dict('series')
+# Initializing the Data and the Graph
+#source = ColumnDataSource(data=raw_dfs[cat_df].loc[raw_dfs[cat_df].iloc[0,:]==raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]])
+labels = raw_list[0]
+values = raw_dfs[cat_df][ raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]]).any(1)]
 
-source = ColumnDataSource(data=data[years[0]])
+plot = figure(y_range=labels, title=raw_titles[0], height=300)
+plot.xaxis.axis_label = "Options in Category"
+plot.yaxis.axis_label = "Percentage of Complaints"
 
-plot = figure(x_range=(1, 9), y_range=(20, 100), title='Gapminder Data', height=300)
-plot.xaxis.ticker = SingleIntervalTicker(interval=1)
-plot.xaxis.axis_label = "Children per woman (total fertility)"
-plot.yaxis.ticker = SingleIntervalTicker(interval=20)
-plot.yaxis.axis_label = "Life expectancy at birth (years)"
-
-label = Label(x=1.1, y=18, text=str(years[0]), text_font_size='93px', text_color='#eeeeee')
-plot.add_layout(label)
-
-color_mapper = CategoricalColorMapper(palette=Spectral6, factors=regions_list)
-plot.circle(
-    x='fertility',
-    y='life',
-    size='population',
-    source=source,
-    fill_color={'field': 'region', 'transform': color_mapper},
+#color_mapper = CategoricalColorMapper(palette=Spectral6, factors=labels)
+plot.hbar(
+    y=labels,
+    right=values,
+    #source=source,
+    #fill_color=color_mapper,
+    fill_color='blue',
     fill_alpha=0.8,
     line_color='#7c7e71',
     line_width=0.5,
     line_alpha=0.5,
-    legend_group='region',
 )
-plot.add_tools(HoverTool(tooltips="@Country", show_arrow=False, point_policy='follow_mouse'))
+plot.add_tools(HoverTool(tooltips="@values", show_arrow=False, point_policy='follow_mouse'))
 
 
-def animate_update():
-    year = slider.value + 1
-    if year > years[-1]:
-        year = years[0]
-    slider.value = year
+# Creating the selector for the company
+def company_update(attr, old, new):
+    tot_complaints.text = "Total Number of Complaints for {}:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
+    tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,1])
+    values = raw_dfs[cat_df][ raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0]]).any(1)]
+    plot.right = values
+    
+com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
+com_sel.on_change('value', company_update)
+
+# Creating the selector for the category
+def category_update(attr, old, new):
+    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
+    cat_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[cat_sel.value,1])
+
+cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
+cat_sel.on_change('value', category_update)
+
+selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, cat_complaints, cat_comp_val)
+raw_layout = row(selector, plot, sizing_mode='scale_width')
 
 
-def slider_update(attrname, old, new):
-    year = slider.value
-    label.text = str(year)
-    source.data = data[year]
-
-slider = Slider(start=years[0], end=years[-1], value=years[0], step=1, title="Year")
-slider.on_change('value', slider_update)
-
-callback_id = None
-
-def animate():
-    global callback_id
-    if button.label == '► Play':
-        button.label = '❚❚ Pause'
-        callback_id = curdoc().add_periodic_callback(animate_update, 200)
-    else:
-        button.label = '► Play'
-        curdoc().remove_periodic_callback(callback_id)
-
-button = Button(label='► Play', width=60)
-button.on_event('button_click', animate)
-
-layout = layout([
-    [plot],
-    [slider, button],
-], sizing_mode='scale_width')
-
-curdoc().add_root(layout)
-curdoc().title = "Gapminder"
-
-
-def predict(area, bedrooms, baths, offers, list_price):
-
-    year = 2019
-    df = pd.DataFrame(
-        columns=['Year', 'Area', 'Total Bathrooms', 'Bedrooms', 'Curr List Price', 'Number of Offers'],
-        data=[[year, area, baths, bedrooms, list_price, offers]]
-    )
-
-    pipeline = load('model/pipeline.joblib')
-    y_pred_log = pipeline.predict(df)
-    y_pred = y_pred_log[0]
-    percent_over = ((y_pred - list_price) / list_price) * 100
-    per_offer = percent_over / offers
-    results = f'The predicted winning bid is ${y_pred:,.0f} which is {percent_over:.2f}% over the asking price or \
-                {per_offer:.2f}% per offer.'
-
-    return results
+curdoc().add_root(raw_layout)
+curdoc().title = "Complaints Classifier"
