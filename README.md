@@ -10,7 +10,7 @@ We have chosen to analyze financial consumer complaints for being able to rate d
 --Currently a work in progress
 
 To do: 
-1) Calculate the naive classifier baseline. 
+1) Calculate the naive classifier micro F1 baseline score. 
 2) Plot PR and ROC-AUC curves for 10%-RoBERTa model.
-3) Hyperparameter tune training epochs and learning rate for the final model. 
+3) Hyperparameter tune training epochs and learning rate for the final model with random search (each iteration takes ~30 min). 
 
