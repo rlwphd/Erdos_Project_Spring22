@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import pickle
 import pandas as pd
@@ -13,7 +14,8 @@ from bokeh.plotting import figure, show
 
 from load import load_data
 
-raw_dfs, mort_dfs, raw_category, mort_category, raw_titles, mort_titles, raw_list, mort_list = load_data()
+# Need to give the function either 'raw' or 'mort'
+raw_dfs, raw_category, raw_titles, raw_list = load_data('raw')
 
 # Creating the list of company names and setting up the total number of complaints text
 company_list = raw_dfs['Top30Companies_TotalComplaints'].iloc[:,0].to_list()
@@ -68,7 +70,14 @@ cat_sel = Select(title="Choose Category to view:", value=raw_category[0], option
 cat_sel.on_change('value', category_update)
 
 selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, cat_complaints, cat_comp_val)
-raw_layout = row(selector, plot, sizing_mode='scale_width')
+raw_layout = row(selector, plot, name="raw_layout", sizing_mode='scale_width')
+
+
+
+#mort_dfs, mort_category, mort_titles, mort_list = load_data('mort')
+
+
+
 
 
 curdoc().add_root(raw_layout)
