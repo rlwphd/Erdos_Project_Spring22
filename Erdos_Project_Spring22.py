@@ -53,7 +53,7 @@ def load_data(type='raw'):
 
     # Grabbing all of the csv files in the data folder from github that are needed
     # and storing them in a dictionary so that they can be called by their file name
-    raw_files = ['Top30Companies_TotalComplaints', 'Consumer_complaints_TopCompanies', 'Issue_complaints_TopCompanies', 'Product_complaints_TopCompanies', 'Response_complaints_TopCompanies', 'State_complaints_TopCompanies', 'Sub-product_complaints_TopCompanies', 'Tags_complaints_TopCompanies', 'Timely response_complaints_TopCompanies']
+    raw_files = ['Top30Companies_TotalComplaints', 'Consumer_complaints_TopCompanies', 'Issue_complaints_TopCompanies', 'Product_complaints_TopCompanies', 'Response_complaints_TopCompanies', 'State_complaints_TopCompanies', 'Sub-product_complaints_TopCompanies', 'Tags_complaints_TopCompanies', 'Timely_complaints_TopCompanies']
     dfs = {}
     if type == 'raw':
         for name in raw_files:
