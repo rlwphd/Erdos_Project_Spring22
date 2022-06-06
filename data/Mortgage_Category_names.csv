@@ -1,0 +1,8 @@
+,0
+0,"['Trouble during payment process', 'Applying for a mortgage or refinancing an existing mortgage', 'Struggling to pay mortgage', 'Incorrect information on your report', 'Closing on a mortgage', ""Problem with a credit reporting company's investigation into an existing problem"", 'Improper use of your report', 'Problem with fraud alerts or security freezes', 'Credit monitoring or identity theft protection services', 'Loan modification,collection,foreclosure', 'Loan servicing, payments, escrow account', 'Settlement process and costs', 'Application, originator, mortgage broker', 'Credit decision / Underwriting', 'Unable to get your credit report or credit score']"
+1,"['Conventional home mortgage', 'VA mortgage', 'Other type of mortgage', 'FHA mortgage', 'Home equity loan or line of credit (HELOC)', 'Reverse mortgage', 'Conventional fixed mortgage', 'Conventional adjustable mortgage (ARM)', 'Home equity loan or line of credit', 'Other mortgage']"
+2,"['PA', 'CA', 'NY', 'AL', 'TX', 'WA', 'MT', 'OH', 'VA', 'AR', 'WI', 'MD', 'IL', 'GA', 'FL', 'DE', 'CT', 'MI', 'AZ', 'AK', 'VT', 'WV', 'NC', 'ME', 'MS', 'ID', 'MO', 'NE', 'UT', 'CO', 'KS', 'DC', 'MA', 'IN', 'SC', 'MN', 'NJ', 'NM', 'SD', 'KY', 'HI', 'OK', 'LA', 'NV', 'RI', 'ND', 'NH', 'TN', 'AE', 'IA', 'OR', nan, 'WY', 'AP', 'UNITED STATES MINOR OUTLYING ISLANDS', 'PR', 'VI', 'FM', 'MP', 'AA', 'GU', 'MH', 'PW']"
+3,"[nan, 'Yes', 'No']"
+4,"['Yes', 'No']"
+5,"['Servicemember', nan, 'Older American, Servicemember', 'Older American']"
+6,"['Closed with non-monetary relief', 'Closed with explanation', 'Closed with monetary relief', 'Closed']"

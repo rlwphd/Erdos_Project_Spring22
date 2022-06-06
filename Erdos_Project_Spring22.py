@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
-import json
+import re
 import pandas as pd
 import numpy as np
 #from joblib import load
@@ -60,15 +59,17 @@ def load_data(type='raw'):
         for name in raw_files:
             dfs[name] = pd.read_csv(git_path+name+".csv")
         # Loading the possible values for each category
-        with open(git_path+"Category_names.txt", "r") as f:
-            cat_list = json.load(f)
+        cat_list = pd.read_csv(git_path+"Category_names.csv")
+        cat_list = [re.split(r"', '|, '|', ", val.replace("['","").replace("']","").replace("[","").replace("]","")) for val in cat_list.iloc[:,0].to_list()]
+        cat_list = [list(map(lambda x: x if x != 'nan' else 'Not Given', line)) for line in cat_list]
 
     mort_files = ['MortgageTop30Companies_TotalComplaints', 'Mortgage_Consumer_complaints_TopCompanies', 'Mortgage_Issue_complaints_TopCompanies', 'Mortgage_Response_complaints_TopCompanies', 'Mortgage_State_complaints_TopCompanies', 'Mortgage_Sub-product_complaints_TopCompanies', 'Mortgage_Tags_complaints_TopCompanies', 'Mortgage_Timely_complaints_TopCompanies']
     if type == 'mort':
         for name in mort_files:
             dfs[name] = pd.read_csv(git_path+name+".csv")
-        with open(git_path+"Mortgage_category_names.txt", "r") as f:
-            cat_list = json.load(f)
+        cat_list = pd.read_csv(git_path+"Mortgage_Category_names.csv")
+        cat_list = [re.split(r"', '|, '|', ", val.replace("['","").replace("']","").replace("[","").replace("]","")) for val in cat_list.iloc[:,0].to_list()]
+        cat_list = [list(map(lambda x: x if x != 'nan' else 'Not Given', line)) for line in cat_list]
         
         titles = titles[1:]
         category = category[1:]
