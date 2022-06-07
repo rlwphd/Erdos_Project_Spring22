@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import pandas as pd
+import math
 #import numpy as np
 #from joblib import load
 
@@ -8,7 +9,7 @@ from bokeh.io import curdoc
 from bokeh.layouts import layout, column, row
 from bokeh.models import (Button, CategoricalColorMapper, ColumnDataSource, Div, HoverTool,
                           Label, Paragraph, SingleIntervalTicker, Slider, Select)
-#from bokeh.palettes import Spectral6
+from bokeh.palettes import Turbo256
 from bokeh.plotting import figure, show
 
 #from load import load_data
@@ -83,7 +84,8 @@ p {
     
     <h4>Visualization of Complaints</h4>
     
-    <p>In order to make this interactive display functional, it is limited to 30 Companies which had the highest number of complaints.<br><br></p>
+    <p>In order to make this interactive display functional, it is limited to 30 Companies which had the highest number
+    of complaints. The graph below allows you to explore some of the raw data from the CFPB. <br><br></p>
 </div>"""
 
 mid_para = """<style>
@@ -114,16 +116,14 @@ p {
     contain the detailed customer complaint. Meaning that some data cleaning needed to happen before we could
     train our AI model to predict our complaints. We also wanted our model to be able to predict the issue of
     the complaint and not just the category of the complaint, so our model was trained only on the mortgage
-    loan data. Further improvements will be to include all issues from all product categories. Below details
-    out how well the models were able to learn the necessary features in order to determine the issue of the
-    complaint.<br><br></p>
+    loan data. Further improvements will be to include all issues from all product categories. Below allows
+    one to explore the different aspects of the mortage data.<br><br></p>
     
 </div>"""
 
 heading = Div(text=top_para, sizing_mode='stretch_width')
 
 mid_text = Div(text=mid_para, sizing_mode='stretch_width')
-
 
 # Loading in the necessary data for displaying
 def load_data(type='raw'):
@@ -177,44 +177,54 @@ cat_df = '{}_complaints_TopCompanies'.format(raw_category[0])
 cat_complaints = Paragraph(text="Total Number of Complaints in the {} Category:".format(raw_category[0]), align='center')
 cat_comp_val = Paragraph(text=str(raw_dfs[cat_df].iloc[0,2]), align='center')
 
+# Mouse hover display on graphs
+TOOLTIPS=[
+    ("@labels",''),
+    ("Compliants", "@values")
+]
+
 # Initializing the Data and the Graph
-#source = ColumnDataSource(data=raw_dfs[cat_df].loc[raw_dfs[cat_df].iloc[0,:]==raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]])
 rlabels = raw_list[0]
-rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]]).any(1)]
+rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,2].to_list()
+rcolor = Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+rsource = ColumnDataSource(data={'labels': rlabels, 'values':rvalues, 'color':rcolor})
 
 rplot = figure(y_range=rlabels, title=raw_titles[0], width=800, height=500)
-rplot.xaxis.axis_label = "Options in Category"
-rplot.yaxis.axis_label = "Percentage of Complaints"
+rplot.yaxis.axis_label = "Options in Category"
+rplot.xaxis.axis_label = "Number of Complaints"
 
 #color_mapper = CategoricalColorMapper(palette=Spectral6, factors=labels)
-# plot.hbar(
-#     y=labels,
-#     right=values,
-#     #source=source,
-#     #fill_color=color_mapper,
-#     fill_color='blue',
-#     fill_alpha=0.8,
-#     line_color='#7c7e71',
-#     line_width=0.5,
-#     line_alpha=0.5,
-# )
-#plot.add_tools(HoverTool(tooltips="@values", show_arrow=False, point_policy='follow_mouse'))
+rplot.hbar(
+    y='labels',
+    right='values',
+    source=rsource,
+    height=0.8,
+    color='color'
+)
+rplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='follow_mouse'))
 
 
 # Creating the selector for the company
-# def company_update(attr, old, new):
-#     tot_complaints.text = "Total Number of Complaints for {}:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
-#     tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,1])
-#     values = raw_dfs[cat_df][ raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0]]).any(1)]
-#     plot.right = values
+def company_update(attrname, old, new):
+    rlabels = raw_list[com_sel.value]
+    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0]]).any(1)].iloc[:,2].to_list()
+    tot_complaints.text = "Total Number of Complaints for {}:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
+    tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,1])
+    rsource.data = dict(
+        labels=rlabels,
+        values=rvalues,
+        color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+    )
+    rplot.title.text = raw_titles[com_sel.value]
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
-# com_sel.on_change('value', company_update)
+com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
-# def category_update(attr, old, new):
-#     cat_complaints.text = "Total Number of Complaints in the {} Category:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
-#     cat_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[cat_sel.value,1])
+def category_update(attrname, old, new):
+    cat_df = '{}_complaints_TopCompanies'.format(raw_category[cat_sel.value])
+    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(raw_category[cat_sel.value])
+    cat_comp_val.text = str(raw_dfs[cat_df].iloc[cat_sel.value,2])
 
 cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
 # cat_sel.on_change('value', category_update)
@@ -237,13 +247,24 @@ mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category:
 mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].iloc[0,1]), align='center')
 
 # Initializing the Data and the Graph
-#source = ColumnDataSource(data=raw_dfs[cat_df].loc[raw_dfs[cat_df].iloc[0,:]==raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]])
 mlabels = mort_list[0]
-mvalues = mort_dfs[mort_df][mort_dfs[mort_df].isin([mort_dfs['MortgageTop30Companies_TotalComplaints'].iloc[0,0]]).any(1)]
+mvalues = mort_dfs[mort_df][mort_dfs[mort_df].isin([mort_dfs['MortgageTop30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,1]
+mcolor = Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
+msource = ColumnDataSource(data={'labels': mlabels, 'values':mvalues, 'color':mcolor})
 
 mplot = figure(y_range=mlabels, title=mort_titles[0], width=800, height=500)
-mplot.xaxis.axis_label = "Options in Category"
-mplot.yaxis.axis_label = "Percentage of Complaints"
+mplot.yaxis.axis_label = "Options in Category"
+mplot.xaxis.axis_label = "Percentage of Complaints"
+
+mplot.hbar(
+    y='labels',
+    right='values',
+    source=msource,
+    height=0.8,
+    color='color'
+)
+mplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='follow_mouse'))
+
 
 mortcom_sel = Select(title="Choose Company to view:", value=mcompany_list[0], options=mcompany_list)
 
@@ -254,6 +275,9 @@ mort_layout = row(mselector, mplot, align='center')
 
 final_layout = column(heading, raw_layout, mid_text, mort_layout, sizing_mode='stretch_both')
 
-curdoc().add_root(final_layout)
-curdoc().title = "Complaints Classifier"
-#show(final_layout)
+# Server display of app
+#curdoc().add_root(final_layout)
+#curdoc().title = "Complaints Classifier"
+
+# Local display of app
+show(final_layout)
