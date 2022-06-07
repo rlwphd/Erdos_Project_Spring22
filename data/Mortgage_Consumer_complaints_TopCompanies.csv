@@ -1,91 +1,91 @@
-,Company,Mortgage Total Consumer disputed? Complaints
-0,"AmeriHome Mortgage Company, LLC",0
-1,"AmeriHome Mortgage Company, LLC",7
-2,"AmeriHome Mortgage Company, LLC",32
-3,"CITIZENS FINANCIAL GROUP, INC.",0
-4,"CITIZENS FINANCIAL GROUP, INC.",43
-5,"CITIZENS FINANCIAL GROUP, INC.",129
-6,RoundPoint Mortgage Servicing Corporation,0
-7,RoundPoint Mortgage Servicing Corporation,47
-8,RoundPoint Mortgage Servicing Corporation,227
-9,AMERISAVE MORTGAGE CORPORATION,0
-10,AMERISAVE MORTGAGE CORPORATION,16
-11,AMERISAVE MORTGAGE CORPORATION,53
-12,"Dovenmuehle Mortgage, Inc.",0
-13,"Dovenmuehle Mortgage, Inc.",32
-14,"Dovenmuehle Mortgage, Inc.",90
-15,"LAKEVIEW LOAN SERVICING, LLC",0
-16,"LAKEVIEW LOAN SERVICING, LLC",3
-17,"LAKEVIEW LOAN SERVICING, LLC",25
-18,"Fay Servicing, LLC",0
-19,"Fay Servicing, LLC",39
-20,"Fay Servicing, LLC",111
-21,"LD Holdings Group, LLC",0
-22,"LD Holdings Group, LLC",41
-23,"LD Holdings Group, LLC",110
-24,"FLAGSTAR BANK, FSB",0
-25,"FLAGSTAR BANK, FSB",41
-26,"FLAGSTAR BANK, FSB",141
-27,RUSHMORE LOAN MANAGEMENT SERVICES LLC,0
-28,RUSHMORE LOAN MANAGEMENT SERVICES LLC,60
-29,RUSHMORE LOAN MANAGEMENT SERVICES LLC,127
-30,"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",0
-31,"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",77
-32,"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",312
-33,"Seterus, Inc.",0
-34,"Seterus, Inc.",214
-35,"Seterus, Inc.",595
-36,PNC Bank N.A.,0
-37,PNC Bank N.A.,79
-38,PNC Bank N.A.,363
-39,"PENNYMAC LOAN SERVICES, LLC.",0
-40,"PENNYMAC LOAN SERVICES, LLC.",84
-41,"PENNYMAC LOAN SERVICES, LLC.",264
-42,"Caliber Home Loans, Inc.",0
-43,"Caliber Home Loans, Inc.",152
-44,"Caliber Home Loans, Inc.",424
-45,"CITIBANK, N.A.",0
-46,"CITIBANK, N.A.",212
-47,"CITIBANK, N.A.",688
-48,"CARRINGTON MORTGAGE SERVICES, LLC",0
-49,"CARRINGTON MORTGAGE SERVICES, LLC",91
-50,"CARRINGTON MORTGAGE SERVICES, LLC",470
-51,U.S. BANCORP,0
-52,U.S. BANCORP,161
-53,U.S. BANCORP,472
-54,"Rocket Mortgage, LLC",0
-55,"Rocket Mortgage, LLC",93
-56,"Rocket Mortgage, LLC",301
-57,Freedom Mortgage Company,0
-58,Freedom Mortgage Company,118
-59,Freedom Mortgage Company,353
-60,Specialized Loan Servicing Holdings LLC,0
-61,Specialized Loan Servicing Holdings LLC,211
-62,Specialized Loan Servicing Holdings LLC,520
-63,"LoanCare, LLC",0
-64,"LoanCare, LLC",75
-65,"LoanCare, LLC",331
-66,"Shellpoint Partners, LLC",0
-67,"Shellpoint Partners, LLC",104
-68,"Shellpoint Partners, LLC",279
-69,"SELECT PORTFOLIO SERVICING, INC.",0
-70,"SELECT PORTFOLIO SERVICING, INC.",313
-71,"SELECT PORTFOLIO SERVICING, INC.",659
-72,JPMORGAN CHASE & CO.,0
-73,JPMORGAN CHASE & CO.,442
-74,JPMORGAN CHASE & CO.,1301
-75,Ditech Financial LLC,0
-76,Ditech Financial LLC,519
-77,Ditech Financial LLC,1749
-78,"BANK OF AMERICA, NATIONAL ASSOCIATION",0
-79,"BANK OF AMERICA, NATIONAL ASSOCIATION",767
-80,"BANK OF AMERICA, NATIONAL ASSOCIATION",2024
-81,Ocwen Financial Corporation,0
-82,Ocwen Financial Corporation,845
-83,Ocwen Financial Corporation,2180
-84,NATIONSTAR MORTGAGE,0
-85,NATIONSTAR MORTGAGE,725
-86,NATIONSTAR MORTGAGE,2052
-87,WELLS FARGO & COMPANY,0
-88,WELLS FARGO & COMPANY,963
-89,WELLS FARGO & COMPANY,2699
+Company,Mortgage Total Complaints
+"AmeriHome Mortgage Company, LLC",0
+"AmeriHome Mortgage Company, LLC",7
+"AmeriHome Mortgage Company, LLC",32
+"CITIZENS FINANCIAL GROUP, INC.",0
+"CITIZENS FINANCIAL GROUP, INC.",43
+"CITIZENS FINANCIAL GROUP, INC.",129
+RoundPoint Mortgage Servicing Corporation,0
+RoundPoint Mortgage Servicing Corporation,47
+RoundPoint Mortgage Servicing Corporation,227
+AMERISAVE MORTGAGE CORPORATION,0
+AMERISAVE MORTGAGE CORPORATION,16
+AMERISAVE MORTGAGE CORPORATION,53
+"Dovenmuehle Mortgage, Inc.",0
+"Dovenmuehle Mortgage, Inc.",32
+"Dovenmuehle Mortgage, Inc.",90
+"LAKEVIEW LOAN SERVICING, LLC",0
+"LAKEVIEW LOAN SERVICING, LLC",3
+"LAKEVIEW LOAN SERVICING, LLC",25
+"Fay Servicing, LLC",0
+"Fay Servicing, LLC",39
+"Fay Servicing, LLC",111
+"LD Holdings Group, LLC",0
+"LD Holdings Group, LLC",41
+"LD Holdings Group, LLC",110
+"FLAGSTAR BANK, FSB",0
+"FLAGSTAR BANK, FSB",41
+"FLAGSTAR BANK, FSB",141
+RUSHMORE LOAN MANAGEMENT SERVICES LLC,0
+RUSHMORE LOAN MANAGEMENT SERVICES LLC,60
+RUSHMORE LOAN MANAGEMENT SERVICES LLC,127
+"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",0
+"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",77
+"Community Loan Servicing, LLC (formerly known as Bayview Loan Servicing, LLC)",312
+"Seterus, Inc.",0
+"Seterus, Inc.",214
+"Seterus, Inc.",595
+PNC Bank N.A.,0
+PNC Bank N.A.,79
+PNC Bank N.A.,363
+"PENNYMAC LOAN SERVICES, LLC.",0
+"PENNYMAC LOAN SERVICES, LLC.",84
+"PENNYMAC LOAN SERVICES, LLC.",264
+"Caliber Home Loans, Inc.",0
+"Caliber Home Loans, Inc.",152
+"Caliber Home Loans, Inc.",424
+"CITIBANK, N.A.",0
+"CITIBANK, N.A.",212
+"CITIBANK, N.A.",688
+"CARRINGTON MORTGAGE SERVICES, LLC",0
+"CARRINGTON MORTGAGE SERVICES, LLC",91
+"CARRINGTON MORTGAGE SERVICES, LLC",470
+U.S. BANCORP,0
+U.S. BANCORP,161
+U.S. BANCORP,472
+"Rocket Mortgage, LLC",0
+"Rocket Mortgage, LLC",93
+"Rocket Mortgage, LLC",301
+Freedom Mortgage Company,0
+Freedom Mortgage Company,118
+Freedom Mortgage Company,353
+Specialized Loan Servicing Holdings LLC,0
+Specialized Loan Servicing Holdings LLC,211
+Specialized Loan Servicing Holdings LLC,520
+"LoanCare, LLC",0
+"LoanCare, LLC",75
+"LoanCare, LLC",331
+"Shellpoint Partners, LLC",0
+"Shellpoint Partners, LLC",104
+"Shellpoint Partners, LLC",279
+"SELECT PORTFOLIO SERVICING, INC.",0
+"SELECT PORTFOLIO SERVICING, INC.",313
+"SELECT PORTFOLIO SERVICING, INC.",659
+JPMORGAN CHASE & CO.,0
+JPMORGAN CHASE & CO.,442
+JPMORGAN CHASE & CO.,1301
+Ditech Financial LLC,0
+Ditech Financial LLC,519
+Ditech Financial LLC,1749
+"BANK OF AMERICA, NATIONAL ASSOCIATION",0
+"BANK OF AMERICA, NATIONAL ASSOCIATION",767
+"BANK OF AMERICA, NATIONAL ASSOCIATION",2024
+Ocwen Financial Corporation,0
+Ocwen Financial Corporation,845
+Ocwen Financial Corporation,2180
+NATIONSTAR MORTGAGE,0
+NATIONSTAR MORTGAGE,725
+NATIONSTAR MORTGAGE,2052
+WELLS FARGO & COMPANY,0
+WELLS FARGO & COMPANY,963
+WELLS FARGO & COMPANY,2699
