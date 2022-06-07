@@ -254,6 +254,6 @@ mort_layout = row(mselector, mplot, align='center')
 
 final_layout = column(heading, raw_layout, mid_text, mort_layout, sizing_mode='stretch_both')
 
-#curdoc().add_root(final_layout)
-#curdoc().title = "Complaints Classifier"
-show(final_layout)
+curdoc().add_root(final_layout)
+curdoc().title = "Complaints Classifier"
+#show(final_layout)
