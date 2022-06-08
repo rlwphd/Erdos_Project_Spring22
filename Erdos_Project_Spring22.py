@@ -324,8 +324,8 @@ tot_mort_comp_val = Paragraph(text=str(mort_dfs['MortgageTop30Companies_TotalCom
 
 # Defining which category I'm after and setting up the total number of categorical complaints text
 mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mort_category[0])
-mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category for sub-category {}:".format(mort_category[0], mort_list['Issue'][-1]), align='center')
-mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].groupby(['Company']).get_group((mcompany_list[0])).iloc[-1,1].sum()), align='center')
+#mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category for sub-category {}:".format(mort_category[0], mort_list['Issue'][-1]), align='center')
+#mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].groupby(['Company']).get_group((mcompany_list[0])).iloc[-1,1].sum()), align='center')
 
 # Initializing the Data and the Graph
 mlabels = mort_list['Issue']
@@ -350,13 +350,13 @@ mplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='fol
 # Creating the selector for the company
 def mcompany_update(attrname, old, new):
     # Update which company is displayed
-    tot_complaints.text = "Total Number of Complaints for {}:".format(mortcom_sel.value)
-    tot_comp_val.text = str(mort_dfs['MortgageTop30Companies_TotalComplaints'][mort_dfs['MortgageTop30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
+    tot_mort_complaints.text = "Total Number of Complaints for {}:".format(mortcom_sel.value)
+    tot_mort_comp_val.text = str(mort_dfs['MortgageTop30Companies_TotalComplaints'][mort_dfs['MortgageTop30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
     # Update the category
     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
-    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
-    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
+    # mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+    # mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
+    # mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
     # Update the graph with the new values
     mlabels = mort_list[mortcat_sel.value]
     mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
@@ -376,9 +376,9 @@ mortcom_sel.on_change('value', mcompany_update)
 def mcategory_update(attrname, old, new):
     # Update the category
     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
-    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
-    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
+    # mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+    # mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
+    # mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
     # Update the graph with the new values
     mlabels = mort_list[mortcat_sel.value]
     mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
@@ -391,32 +391,33 @@ def mcategory_update(attrname, old, new):
     mplot.title.text = mtitle[0] 
     mplot.y_range.factors=mlabels
 
-mortcat_sel = Select(title="Choose Category to view:", value=mort_category[0], options=mort_category)
+mortcat_sel = Select(title="Choose Category to view complaint distribution:", value=mort_category[0], options=mort_category)
 mortcat_sel.on_change('value', mcategory_update)
 
-# Creating the selector for the sub-category
-def mproduct_update(attrname, old, new):
-    # Update the category
-    mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
-    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
-    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
-    # Update the graph with the new values
-    mlabels = mort_list[mortcat_sel.value]
-    mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
-    msource.data = dict(
-        labels=mlabels,
-        values=mvalues,
-        color=Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
-    )
-    mtitle = [val for val in mort_titles if mortcat_sel.value in val]
-    mplot.title.text = mtitle[0]
-    mplot.y_range.factors=mlabels
+# # Creating the selector for the sub-category
+# def mproduct_update(attrname, old, new):
+#     # Update the category
+#     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
+#     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+#     mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
+#     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
+#     # Update the graph with the new values
+#     mlabels = mort_list[mortcat_sel.value]
+#     mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
+#     msource.data = dict(
+#         labels=mlabels,
+#         values=mvalues,
+#         color=Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
+#     )
+#     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
+#     mplot.title.text = mtitle[0]
+#     mplot.y_range.factors=mlabels
 
-mortprod_sel = Select(title="Select which Product to view in the chosen Category:", value=mort_list['Issue'][-1], options=mort_list['Issue'])
-mortprod_sel.on_change('value', mproduct_update)
+# mortprod_sel = Select(title="Select which Product to view in the chosen Category:", value=mort_list['Issue'][-1], options=mort_list['Issue'])
+# mortprod_sel.on_change('value', mproduct_update)
 
-mselector = column(mortcom_sel, tot_mort_complaints, tot_mort_comp_val, mortcat_sel, mortprod_sel, mort_complaints, mort_comp_val, width=500, margin=(0,50,0,50))
+# mselector = column(mortcom_sel, tot_mort_complaints, tot_mort_comp_val, mortcat_sel, mortprod_sel, mort_complaints, mort_comp_val, width=500, margin=(0,50,0,50))
+mselector = column(mortcom_sel, tot_mort_complaints, tot_mort_comp_val, mortcat_sel, width=500, margin=(0,50,0,50))
 mort_layout = row(mselector, mplot, align='center')
 
 final_layout = column(heading, raw_layout, mid_text, mort_layout, sizing_mode='stretch_both')
