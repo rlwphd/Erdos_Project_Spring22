@@ -128,7 +128,7 @@ mid_text = Div(text=mid_para, sizing_mode='stretch_width')
 # Loading in the necessary data for displaying
 def load_data(type='raw'):
     # Defining the categories for plotting purposes
-    titles = ['Product Category', 'Issue Category', 'Sub-product Category', 'State', 'Consumer Respone', 'Timely Response', 'Tags Category', 'Company Response']
+    titles = ['Product Category', 'Issue Category', 'Sub-product Category', 'Complaints by State', 'Consumer Response', 'Timely Response', 'Tags Category', 'Company Response']
     category = ['Product', 'Issue', 'Sub-product', 'State', 'Consumer', 'Timely', 'Tags', 'Response']
 
     # Path to github for files
@@ -181,8 +181,8 @@ tot_comp_val = Paragraph(text=str(raw_dfs['Top30Companies_TotalComplaints'].iloc
 
 # Defining which category I'm after and setting up the total number of categorical complaints text
 cat_df = '{}_complaints_TopCompanies'.format(raw_category[0])
-cat_complaints = Paragraph(text="Total Number of Complaints in the {} Category:".format(raw_category[0]), align='center')
-cat_comp_val = Paragraph(text=str(raw_dfs[cat_df].iloc[:,2].sum()), align='center')
+cat_complaints = Paragraph(text=" ", align='center', visible=False)
+cat_comp_val = Paragraph(text=" ", align='center', visible=False)
 
 # Mouse hover display on graphs
 TOOLTIPS=[
@@ -192,7 +192,7 @@ TOOLTIPS=[
 
 # Initializing the Data and the Graph
 rlabels = raw_list['Product']
-rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,2].to_list()
+rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0])).iloc[:,2].to_list()
 rcolor = Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
 rsource = ColumnDataSource(data={'labels': rlabels, 'values':rvalues, 'color':rcolor})
 
@@ -216,33 +216,85 @@ def company_update(attrname, old, new):
     # Update which company is displayed
     tot_complaints.text = "Total Number of Complaints for {}:".format(com_sel.value)
     tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'][raw_dfs['Top30Companies_TotalComplaints'].isin([com_sel.value]).any(1)].iloc[:,1].sum())
-    # Update the category for the new company
-    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
-    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(cat_sel.value)
-    cat_comp_val.text = str(raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].sum())
-    # Update the graph with the new values
-    rlabels = raw_list[cat_sel.value]
-    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
-    rsource.data = dict(
-        labels=rlabels,
-        values=rvalues,
-        color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
-    )
-    rtitle = [val for val in raw_titles if cat_sel.value in val]
-    rplot.title.text = rtitle[0]
+    if cat_sel.value != 'Product':
+        # Update the category
+        cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
+        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+        cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
+        # Update the graph with the new values
+        rlabels = raw_list[cat_sel.value]
+        rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
+        rsource.data = dict(
+            labels=rlabels,
+            values=rvalues,
+            color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+        )
+        rtitle = [val for val in raw_titles if cat_sel.value in val]
+        rplot.title.text = rtitle[0]
+        
+    else:
+        # Update the graph with the new values
+        rlabels = raw_list[cat_sel.value]
+        rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((com_sel.value)).iloc[:,2].to_list()
+        rsource.data = dict(
+            labels=rlabels,
+            values=rvalues,
+            color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+        )
+        rtitle = [val for val in raw_titles if cat_sel.value in val]
+        rplot.title.text = rtitle[0]
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
 com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
 def category_update(attrname, old, new):
+    if cat_sel.value != 'Product':
+        prod_sel.visible = True
+        cat_complaints.visible = True
+        cat_comp_val.visible = True
+        # Update the category
+        cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
+        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+        cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
+        # Update the graph with the new values
+        rlabels = raw_list[cat_sel.value]
+        rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
+        rsource.data = dict(
+            labels=rlabels,
+            values=rvalues,
+            color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+        )
+        rtitle = [val for val in raw_titles if cat_sel.value in val]
+        rplot.title.text = rtitle[0]
+        
+    else:
+        prod_sel.visible = False
+        cat_complaints.visible = False
+        cat_comp_val.visible = False
+        # Update the graph with the new values
+        rlabels = raw_list[cat_sel.value]
+        rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((com_sel.value)).iloc[:,2].to_list()
+        rsource.data = dict(
+            labels=rlabels,
+            values=rvalues,
+            color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+        )
+        rtitle = [val for val in raw_titles if cat_sel.value in val]
+        rplot.title.text = rtitle[0]
+
+cat_sel = Select(title="Choose Category to view:", value=raw_category[1], options=raw_category[1:])
+cat_sel.on_change('value', category_update)
+
+# Creating the selector for the sub-category
+def product_update(attrname, old, new):
     # Update the category
     cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
-    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(cat_sel.value)
-    cat_comp_val.text = str(raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].sum())
+    cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+    cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
     # Update the graph with the new values
     rlabels = raw_list[cat_sel.value]
-    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
+    rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
     rsource.data = dict(
         labels=rlabels,
         values=rvalues,
@@ -251,10 +303,10 @@ def category_update(attrname, old, new):
     rtitle = [val for val in raw_titles if cat_sel.value in val]
     rplot.title.text = rtitle[0]
 
-cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
-cat_sel.on_change('value', category_update)
+prod_sel = Select(title="Select which Product to view in the chosen Category:", value=raw_list['Product'][-1], options=raw_list['Product'], visible=False)
+prod_sel.on_change('value', product_update)
 
-selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, cat_complaints, cat_comp_val, width=500, margin=(0,50,0,50))
+selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, prod_sel, cat_complaints, cat_comp_val, width=500, margin=(0,50,0,50))
 raw_layout = row(selector, rplot, align='center')
 
 
@@ -268,12 +320,12 @@ tot_mort_comp_val = Paragraph(text=str(mort_dfs['MortgageTop30Companies_TotalCom
 
 # Defining which category I'm after and setting up the total number of categorical complaints text
 mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mort_category[0])
-mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category:".format(mort_category[0]), align='center')
-mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].iloc[0,1]), align='center')
+mort_complaints = Paragraph(text=" ", align='center')
+mort_comp_val = Paragraph(text=' ', align='center')
 
 # Initializing the Data and the Graph
 mlabels = mort_list['Issue']
-mvalues = mort_dfs[mort_df][mort_dfs[mort_df].isin([mort_dfs['MortgageTop30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,1]
+mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mort_dfs['MortgageTop30Companies_TotalComplaints'].iloc[0,0])).iloc[:,1].tolist()
 mcolor = Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
 msource = ColumnDataSource(data={'labels': mlabels, 'values':mvalues, 'color':mcolor})
 
@@ -291,11 +343,70 @@ mplot.hbar(
 mplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='follow_mouse'))
 
 
+# Creating the selector for the company
+def mcompany_update(attrname, old, new):
+    # Update which company is displayed
+    tot_complaints.text = "Total Number of Complaints for {}:".format(mortcom_sel.value)
+    tot_comp_val.text = str(mort_dfs['Top30Companies_TotalComplaints'][mort_dfs['Top30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
+    # Update the category
+    mort_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
+    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].sum())
+    # Update the graph with the new values
+    mlabels = mort_list[mortcat_sel.value]
+    mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
+    msource.data = dict(
+        labels=mlabels,
+        values=mvalues,
+        color=Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
+    )
+    mtitle = [val for val in mort_titles if mortcat_sel.value in val]
+    mplot.title.text = mtitle[0]       
+    
 mortcom_sel = Select(title="Choose Company to view:", value=mcompany_list[0], options=mcompany_list)
+mortcom_sel.on_change('value', mcompany_update)
+
+# Creating the selector for the category
+def mcategory_update(attrname, old, new):
+    # Update the category
+    mort_df = '{}_complaints_TopCompanies'.format(mortcat_sel.value)
+    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].sum())
+    # Update the graph with the new values
+    mlabels = mort_list[mortcat_sel.value]
+    mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
+    msource.data = dict(
+        labels=mlabels,
+        values=mvalues,
+        color=Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
+    )
+    mtitle = [val for val in mort_titles if mortcat_sel.value in val]
+    mplot.title.text = mtitle[0] 
 
 mortcat_sel = Select(title="Choose Category to view:", value=mort_category[0], options=mort_category)
+mortcat_sel.on_change('value', mcategory_update)
 
-mselector = column(mortcom_sel, tot_mort_complaints, tot_mort_comp_val, mortcat_sel, mort_complaints, mort_comp_val, width=500, margin=(0,50,0,50))
+# Creating the selector for the sub-category
+def mproduct_update(attrname, old, new):
+    # Update the category
+    mort_df = '{}_complaints_TopCompanies'.format(mortcat_sel.value)
+    mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
+    mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].sum())
+    # Update the graph with the new values
+    mlabels = mort_list[mortcat_sel.value]
+    mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[:,1].to_list()
+    msource.data = dict(
+        labels=mlabels,
+        values=mvalues,
+        color=Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
+    )
+    mtitle = [val for val in mort_titles if mortcat_sel.value in val]
+    mplot.title.text = mtitle[0]
+
+mortprod_sel = Select(title="Select which Product to view in the chosen Category:", value=mort_list['Issue'][-1], options=mort_list['Issue'])
+mortprod_sel.on_change('value', mproduct_update)
+
+mselector = column(mortcom_sel, tot_mort_complaints, tot_mort_comp_val, mortcat_sel, mortprod_sel, mort_complaints, mort_comp_val, width=500, margin=(0,50,0,50))
 mort_layout = row(mselector, mplot, align='center')
 
 final_layout = column(heading, raw_layout, mid_text, mort_layout, sizing_mode='stretch_both')
