@@ -127,7 +127,7 @@ mid_text = Div(text=mid_para, sizing_mode='stretch_width')
 # Loading in the necessary data for displaying
 def load_data(type='raw'):
     # Defining the categories for plotting purposes
-    titles = ['Product Category', 'Issue Category', 'Sub-product Category', 'Complaints by State', 'Consumer Response', 'Timely Response', 'Tags Category', 'Company Response']
+    titles = ['Product Categories', 'Issue Categories', 'Sub-product Categories', 'Complaints by State', 'Consumer Disputed', 'Company Responded in a Timely Manner', 'Consumer Categories (Tags)', "Company's Response to Consumer"]
     category = ['Product', 'Issue', 'Sub-product', 'State', 'Consumer', 'Timely', 'Tags', 'Response']
 
     # Path to github for files
@@ -195,7 +195,7 @@ rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((raw_dfs['Top30Companie
 rcolor = Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
 rsource = ColumnDataSource(data={'labels': rlabels, 'values':rvalues, 'color':rcolor})
 
-rplot = figure(y_range=rlabels, title=raw_titles[0], width=800, height_policy='fit', min_height=500)
+rplot = figure(y_range=rlabels, title=raw_titles[0], width=800, height_policy='fit', min_height=500, max_height=1500)
 rplot.yaxis.axis_label = "Options in Category"
 rplot.xaxis.axis_label = "Number of Complaints"
 
@@ -215,34 +215,35 @@ def company_update(attrname, old, new):
     # Update which company is displayed
     tot_complaints.text = "Total Number of Complaints for {}:".format(com_sel.value)
     tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'][raw_dfs['Top30Companies_TotalComplaints'].isin([com_sel.value]).any(1)].iloc[:,1].sum())
-    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
-    if cat_sel.value != 'Product':
+    # Grab the correct category for dataFrame access
+    rcat = [i for i,val in enumerate(raw_titles) if cat_sel.value in val]
+    raw_cat = raw_category[rcat[0]]
+    cat_df = '{}_complaints_TopCompanies'.format(raw_cat)
+    if raw_cat != 'Product':
         # Update the category
-        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(raw_cat, prod_sel.value)
         cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
         # Update the graph with the new values
-        rlabels = raw_list[cat_sel.value]
+        rlabels = raw_list[raw_cat]
         rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
         rsource.data = dict(
             labels=rlabels,
             values=rvalues,
             color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
         )
-        rtitle = [val for val in raw_titles if cat_sel.value in val]
-        rplot.title.text = rtitle[0]
+        rplot.title.text = cat_sel.value
         rplot.y_range.factors=rlabels
         
     else:
         # Update the graph with the new values
-        rlabels = raw_list[cat_sel.value]
+        rlabels = raw_list[raw_cat]
         rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((com_sel.value)).iloc[:,2].to_list()
         rsource.data = dict(
             labels=rlabels,
             values=rvalues,
             color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
         )
-        rtitle = [val for val in raw_titles if cat_sel.value in val]
-        rplot.title.text = rtitle[0]
+        rplot.title.text = cat_sel.value
         rplot.y_range.factors=rlabels
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
@@ -250,24 +251,26 @@ com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
 def category_update(attrname, old, new):
-    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
-    if cat_sel.value != 'Product':
+    # Grab the correct category for dataFrame access
+    rcat = [i for i,val in enumerate(raw_titles) if cat_sel.value in val]
+    raw_cat = raw_category[rcat[0]]
+    cat_df = '{}_complaints_TopCompanies'.format(raw_cat)
+    if raw_cat != 'Product':
         prod_sel.visible = True
         cat_complaints.visible = True
         cat_comp_val.visible = True
         # Update the category
-        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+        cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(raw_cat, prod_sel.value)
         cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
         # Update the graph with the new values
-        rlabels = raw_list[cat_sel.value]
+        rlabels = raw_list[raw_cat]
         rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
         rsource.data = dict(
             labels=rlabels,
             values=rvalues,
             color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
         )
-        rtitle = [val for val in raw_titles if cat_sel.value in val]
-        rplot.title.text = rtitle[0]
+        rplot.title.text = cat_sel.value
         rplot.y_range.factors=rlabels
         
     else:
@@ -275,39 +278,40 @@ def category_update(attrname, old, new):
         cat_complaints.visible = False
         cat_comp_val.visible = False
         # Update the graph with the new values
-        rlabels = raw_list[cat_sel.value]
+        rlabels = raw_list[raw_cat]
         rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((com_sel.value)).iloc[:,2].to_list()
         rsource.data = dict(
             labels=rlabels,
             values=rvalues,
             color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
         )
-        rtitle = [val for val in raw_titles if cat_sel.value in val]
-        rplot.title.text = rtitle[0]
+        rplot.title.text = cat_sel.value
         rplot.y_range.factors=rlabels
 
-cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
+cat_sel = Select(title="Choose Category to view:", value=raw_titles[0], options=raw_titles)
 cat_sel.on_change('value', category_update)
 
 # Creating the selector for the sub-category
 def product_update(attrname, old, new):
+    # Grab the correct category for dataFrame access
+    rcat = [i for i,val in enumerate(raw_titles) if cat_sel.value in val]
+    raw_cat = raw_category[rcat[0]]
     # Update the category
-    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
-    cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
+    cat_df = '{}_complaints_TopCompanies'.format(raw_cat)
+    cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(raw_cat, prod_sel.value)
     cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
     # Update the graph with the new values
-    rlabels = raw_list[cat_sel.value]
+    rlabels = raw_list[raw_cat]
     rvalues = raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].to_list()
     rsource.data = dict(
         labels=rlabels,
         values=rvalues,
         color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
     )
-    rtitle = [val for val in raw_titles if cat_sel.value in val]
-    rplot.title.text = rtitle[0]
+    rplot.title.text = cat_sel.value
     rplot.y_range.factors=rlabels
 
-prod_sel = Select(title="Select which Product to view in the chosen Category:", value=raw_list['Product'][-1], options=raw_list['Product'], visible=False)
+prod_sel = Select(title="Select which Product to view in the chosen Category:", value=raw_list['Product'][8], options=raw_list['Product'], visible=False)
 prod_sel.on_change('value', product_update)
 
 selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, prod_sel, cat_complaints, cat_comp_val, width=500, margin=(0,50,0,50))
@@ -333,7 +337,7 @@ mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mort_dfs['MortgageTo
 mcolor = Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
 msource = ColumnDataSource(data={'labels': mlabels, 'values':mvalues, 'color':mcolor})
 
-mplot = figure(y_range=mlabels, title=mort_titles[0], width=800, height_policy='fit', min_height=500)
+mplot = figure(y_range=mlabels, title=mort_titles[0], width=800, height_policy='fit', min_height=500, max_height=1500)
 mplot.yaxis.axis_label = "Options in Category"
 mplot.xaxis.axis_label = "Percentage of Complaints"
 
