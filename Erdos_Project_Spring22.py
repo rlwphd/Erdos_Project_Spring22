@@ -243,7 +243,7 @@ def company_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
-        rplot.y_range=rlabels
+        rplot.y_range=FactorRange(factors=rlabels)
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
 com_sel.on_change('value', company_update)
@@ -268,7 +268,7 @@ def category_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
-        rplot.y_range=rlabels
+        rplot.y_range=FactorRange(factors=rlabels)
         
     else:
         prod_sel.visible = False
@@ -284,7 +284,7 @@ def category_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
-        rplot.y_range=rlabels
+        rplot.y_range=FactorRange(factors=rlabels)
 
 cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
 cat_sel.on_change('value', category_update)
@@ -305,7 +305,7 @@ def product_update(attrname, old, new):
     )
     rtitle = [val for val in raw_titles if cat_sel.value in val]
     rplot.title.text = rtitle[0]
-    rplot.y_range=rlabels
+    rplot.y_range=FactorRange(factors=rlabels)
 
 prod_sel = Select(title="Select which Product to view in the chosen Category:", value=raw_list['Product'][-1], options=raw_list['Product'], visible=False)
 prod_sel.on_change('value', product_update)
@@ -366,7 +366,7 @@ def mcompany_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0]       
-    mplot.y_range=mlabels
+    mplot.y_range=FactorRange(factors=mlabels)
     
 mortcom_sel = Select(title="Choose Company to view:", value=mcompany_list[0], options=mcompany_list)
 mortcom_sel.on_change('value', mcompany_update)
@@ -387,7 +387,7 @@ def mcategory_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0] 
-    mplot.y_range=mlabels
+    mplot.y_range=FactorRange(factors=mlabels)
 
 mortcat_sel = Select(title="Choose Category to view:", value=mort_category[0], options=mort_category)
 mortcat_sel.on_change('value', mcategory_update)
@@ -408,7 +408,7 @@ def mproduct_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0]
-    mplot.y_range=mlabels
+    mplot.y_range=FactorRange(factors=mlabels)
 
 mortprod_sel = Select(title="Select which Product to view in the chosen Category:", value=mort_list['Issue'][-1], options=mort_list['Issue'])
 mortprod_sel.on_change('value', mproduct_update)
