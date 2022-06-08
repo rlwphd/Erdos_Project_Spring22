@@ -231,6 +231,7 @@ def company_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
+        rplot.y_range=rlabels
         
     else:
         # Update the graph with the new values
@@ -243,6 +244,7 @@ def company_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
+        rplot.y_range=rlabels
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
 com_sel.on_change('value', company_update)
@@ -267,6 +269,7 @@ def category_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
+        rplot.y_range=rlabels
         
     else:
         prod_sel.visible = False
@@ -282,8 +285,9 @@ def category_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
+        rplot.y_range=rlabels
 
-cat_sel = Select(title="Choose Category to view:", value=raw_category[1], options=raw_category[1:])
+cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
 cat_sel.on_change('value', category_update)
 
 # Creating the selector for the sub-category
@@ -302,6 +306,7 @@ def product_update(attrname, old, new):
     )
     rtitle = [val for val in raw_titles if cat_sel.value in val]
     rplot.title.text = rtitle[0]
+    rplot.y_range=rlabels
 
 prod_sel = Select(title="Select which Product to view in the chosen Category:", value=raw_list['Product'][-1], options=raw_list['Product'], visible=False)
 prod_sel.on_change('value', product_update)
@@ -320,8 +325,8 @@ tot_mort_comp_val = Paragraph(text=str(mort_dfs['MortgageTop30Companies_TotalCom
 
 # Defining which category I'm after and setting up the total number of categorical complaints text
 mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mort_category[0])
-mort_complaints = Paragraph(text=" ", align='center')
-mort_comp_val = Paragraph(text=' ', align='center')
+mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category for sub-category {}:".format(mort_category[0], mort_list['Issue'][-1]), align='center')
+mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].groupby(['Company']).get_group((mcompany_list[0])).iloc[:,1].sum()), align='center')
 
 # Initializing the Data and the Graph
 mlabels = mort_list['Issue']
@@ -347,7 +352,7 @@ mplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='fol
 def mcompany_update(attrname, old, new):
     # Update which company is displayed
     tot_complaints.text = "Total Number of Complaints for {}:".format(mortcom_sel.value)
-    tot_comp_val.text = str(mort_dfs['Top30Companies_TotalComplaints'][mort_dfs['Top30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
+    tot_comp_val.text = str(mort_dfs['MortgageTop30Companies_TotalComplaints'][mort_dfs['MortgageTop30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
     # Update the category
     mort_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
@@ -362,6 +367,7 @@ def mcompany_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0]       
+    mplot.y_range=mlabels
     
 mortcom_sel = Select(title="Choose Company to view:", value=mcompany_list[0], options=mcompany_list)
 mortcom_sel.on_change('value', mcompany_update)
@@ -382,6 +388,7 @@ def mcategory_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0] 
+    mplot.y_range=mlabels
 
 mortcat_sel = Select(title="Choose Category to view:", value=mort_category[0], options=mort_category)
 mortcat_sel.on_change('value', mcategory_update)
@@ -402,6 +409,7 @@ def mproduct_update(attrname, old, new):
     )
     mtitle = [val for val in mort_titles if mortcat_sel.value in val]
     mplot.title.text = mtitle[0]
+    mplot.y_range=mlabels
 
 mortprod_sel = Select(title="Select which Product to view in the chosen Category:", value=mort_list['Issue'][-1], options=mort_list['Issue'])
 mortprod_sel.on_change('value', mproduct_update)
