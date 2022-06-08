@@ -195,7 +195,7 @@ rvalues = raw_dfs[cat_df].groupby(['Company']).get_group((raw_dfs['Top30Companie
 rcolor = Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
 rsource = ColumnDataSource(data={'labels': rlabels, 'values':rvalues, 'color':rcolor})
 
-rplot = figure(y_range=rlabels, title=raw_titles[0], width=800, height=500)
+rplot = figure(y_range=rlabels, title=raw_titles[0], width=800, height_policy='fit', min_height=500)
 rplot.yaxis.axis_label = "Options in Category"
 rplot.xaxis.axis_label = "Number of Complaints"
 
@@ -333,7 +333,7 @@ mvalues = mort_dfs[mort_df].groupby(['Company']).get_group((mort_dfs['MortgageTo
 mcolor = Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
 msource = ColumnDataSource(data={'labels': mlabels, 'values':mvalues, 'color':mcolor})
 
-mplot = figure(y_range=mlabels, title=mort_titles[0], width=800, height=500)
+mplot = figure(y_range=mlabels, title=mort_titles[0], width=800, height_policy='fit', min_height=500)
 mplot.yaxis.axis_label = "Options in Category"
 mplot.xaxis.axis_label = "Percentage of Complaints"
 
@@ -353,7 +353,7 @@ def mcompany_update(attrname, old, new):
     tot_complaints.text = "Total Number of Complaints for {}:".format(mortcom_sel.value)
     tot_comp_val.text = str(mort_dfs['MortgageTop30Companies_TotalComplaints'][mort_dfs['MortgageTop30Companies_TotalComplaints'].isin([mortcom_sel.value]).any(1)].iloc[:,1].sum())
     # Update the category
-    mort_df = '{}_complaints_TopCompanies'.format(mortcat_sel.value)
+    mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
     mcat = [val for val in mort_category if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
@@ -375,7 +375,7 @@ mortcom_sel.on_change('value', mcompany_update)
 # Creating the selector for the category
 def mcategory_update(attrname, old, new):
     # Update the category
-    mort_df = '{}_complaints_TopCompanies'.format(mortcat_sel.value)
+    mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
     mcat = [val for val in mort_category if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
@@ -397,7 +397,7 @@ mortcat_sel.on_change('value', mcategory_update)
 # Creating the selector for the sub-category
 def mproduct_update(attrname, old, new):
     # Update the category
-    mort_df = '{}_complaints_TopCompanies'.format(mortcat_sel.value)
+    mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
     mcat = [val for val in mort_category if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
