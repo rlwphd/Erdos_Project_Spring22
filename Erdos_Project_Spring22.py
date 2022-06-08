@@ -175,12 +175,12 @@ tot_comp_val = Paragraph(text=str(raw_dfs['Top30Companies_TotalComplaints'].iloc
 # Defining which category I'm after and setting up the total number of categorical complaints text
 cat_df = '{}_complaints_TopCompanies'.format(raw_category[0])
 cat_complaints = Paragraph(text="Total Number of Complaints in the {} Category:".format(raw_category[0]), align='center')
-cat_comp_val = Paragraph(text=str(raw_dfs[cat_df].iloc[0,2]), align='center')
+cat_comp_val = Paragraph(text=str(raw_dfs[cat_df].iloc[:,2].sum()), align='center')
 
 # Mouse hover display on graphs
 TOOLTIPS=[
-    ("@labels",''),
-    ("Compliants", "@values")
+    ("Category:",'@labels'),
+    ("# of Compliants:", "@values")
 ]
 
 # Initializing the Data and the Graph
@@ -206,10 +206,10 @@ rplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='fol
 
 # Creating the selector for the company
 def company_update(attrname, old, new):
-    rlabels = raw_list[com_sel.value]
-    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0]]).any(1)].iloc[:,2].to_list()
-    tot_complaints.text = "Total Number of Complaints for {}:".format(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,0])
-    tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'].iloc[com_sel.value,1])
+    rlabels = com_sel.value
+    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
+    tot_complaints.text = "Total Number of Complaints for {}:".format(com_sel.value)
+    tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'][raw_dfs['Top30Companies_TotalComplaints'].isin([com_sel.value]).any(1)].iloc[:,1].sum())
     rsource.data = dict(
         labels=rlabels,
         values=rvalues,
@@ -222,12 +222,12 @@ com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
 def category_update(attrname, old, new):
-    cat_df = '{}_complaints_TopCompanies'.format(raw_category[cat_sel.value])
-    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(raw_category[cat_sel.value])
-    cat_comp_val.text = str(raw_dfs[cat_df].iloc[cat_sel.value,2])
+    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
+    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(cat_sel.value)
+    cat_comp_val.text = str(raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].sum())
 
 cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
-# cat_sel.on_change('value', category_update)
+cat_sel.on_change('value', category_update)
 
 selector = column(com_sel, tot_complaints, tot_comp_val, cat_sel, cat_complaints, cat_comp_val, width=500, margin=(0,50,0,50))
 raw_layout = row(selector, rplot, align='center')
