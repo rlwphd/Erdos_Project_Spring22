@@ -6,9 +6,8 @@ import math
 #from joblib import load
 
 from bokeh.io import curdoc
-from bokeh.layouts import layout, column, row
-from bokeh.models import (Button, CategoricalColorMapper, ColumnDataSource, Div, HoverTool,
-                          Label, Paragraph, SingleIntervalTicker, Slider, Select)
+from bokeh.layouts import column, row
+from bokeh.models import ColumnDataSource, Div, FactorRange, HoverTool, Paragraph, Select
 from bokeh.palettes import Turbo256
 from bokeh.plotting import figure, show
 
@@ -231,7 +230,7 @@ def company_update(attrname, old, new):
         )
         rtitle = [val for val in raw_titles if cat_sel.value in val]
         rplot.title.text = rtitle[0]
-        rplot.y_range=rlabels
+        rplot.y_range=FactorRange(factors=rlabels)
         
     else:
         # Update the graph with the new values
