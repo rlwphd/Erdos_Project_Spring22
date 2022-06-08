@@ -355,7 +355,7 @@ def mcompany_update(attrname, old, new):
     # Update the category
     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [val for val in mort_category if mortcat_sel.value in val]
+    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
     # Update the graph with the new values
     mlabels = mort_list[mortcat_sel.value]
@@ -377,7 +377,7 @@ def mcategory_update(attrname, old, new):
     # Update the category
     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [val for val in mort_category if mortcat_sel.value in val]
+    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
     # Update the graph with the new values
     mlabels = mort_list[mortcat_sel.value]
@@ -399,7 +399,7 @@ def mproduct_update(attrname, old, new):
     # Update the category
     mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mortcat_sel.value)
     mort_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(mortcat_sel.value, mortprod_sel.value)
-    mcat = [val for val in mort_category if mortcat_sel.value in val]
+    mcat = [i for i,val in enumerate(mort_category) if mortcat_sel.value in val]
     mort_comp_val.text = str(mort_dfs[mort_df].groupby(['Company']).get_group((mortcom_sel.value)).iloc[mcat[0],1].sum())
     # Update the graph with the new values
     mlabels = mort_list[mortcat_sel.value]
