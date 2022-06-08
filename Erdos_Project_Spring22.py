@@ -147,22 +147,29 @@ def load_data(type='raw'):
         cat_list = pd.read_csv(git_path+"Category_names.csv")
         cat_list = [re.split(r"', '|, '|', ", val.replace("['","").replace("']","").replace("[","").replace("]","")) for val in cat_list.iloc[:,0].to_list()]
         cat_list = [list(map(lambda x: x if x != 'nan' else 'Not Given', line)) for line in cat_list]
+        cat_dict = {}
+        for i,cat in enumerate(category):
+            cat_dict[cat] = cat_list[i]
 
     mort_files = ['MortgageTop30Companies_TotalComplaints', 'Mortgage_Consumer_complaints_TopCompanies', 'Mortgage_Issue_complaints_TopCompanies', 'Mortgage_Response_complaints_TopCompanies', 'Mortgage_State_complaints_TopCompanies', 'Mortgage_Sub-product_complaints_TopCompanies', 'Mortgage_Tags_complaints_TopCompanies', 'Mortgage_Timely_complaints_TopCompanies']
     if type == 'mort':
         for name in mort_files:
             dfs[name] = pd.read_csv(git_path+name+".csv")
         
+        titles = titles[1:]
+        category = category[1:]
+
         # Loading the possible values for each category
         cat_list = pd.read_csv(git_path+"Mortgage_Category_names.csv")
         cat_list = [re.split(r"', '|, '|', ", val.replace("['","").replace("']","").replace("[","").replace("]","")) for val in cat_list.iloc[:,0].to_list()]
         cat_list = [list(map(lambda x: x if x != 'nan' else 'Not Given', line)) for line in cat_list]
+        cat_dict = {}
+        for i,cat in enumerate(category):
+            cat_dict[cat] = cat_list[i]
         
-        titles = titles[1:]
-        category = category[1:]
 
 
-    return dfs, category, titles, cat_list
+    return dfs, category, titles, cat_dict
 
 # Need to give the function either 'raw' or 'mort'
 raw_dfs, raw_category, raw_titles, raw_list = load_data('raw')
@@ -184,7 +191,7 @@ TOOLTIPS=[
 ]
 
 # Initializing the Data and the Graph
-rlabels = raw_list[0]
+rlabels = raw_list['Product']
 rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([raw_dfs['Top30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,2].to_list()
 rcolor = Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
 rsource = ColumnDataSource(data={'labels': rlabels, 'values':rvalues, 'color':rcolor})
@@ -206,25 +213,43 @@ rplot.add_tools(HoverTool(tooltips=TOOLTIPS, show_arrow=False, point_policy='fol
 
 # Creating the selector for the company
 def company_update(attrname, old, new):
-    rlabels = com_sel.value
-    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
+    # Update which company is displayed
     tot_complaints.text = "Total Number of Complaints for {}:".format(com_sel.value)
     tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'][raw_dfs['Top30Companies_TotalComplaints'].isin([com_sel.value]).any(1)].iloc[:,1].sum())
+    # Update the category for the new company
+    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
+    cat_complaints.text = "Total Number of Complaints in the {} Category:".format(cat_sel.value)
+    cat_comp_val.text = str(raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].sum())
+    # Update the graph with the new values
+    rlabels = raw_list[cat_sel.value]
+    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
     rsource.data = dict(
         labels=rlabels,
         values=rvalues,
         color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
     )
-    rplot.title.text = raw_titles[com_sel.value]
+    rtitle = [val for val in raw_titles if cat_sel.value in val]
+    rplot.title.text = rtitle[0]
     
 com_sel = Select(title="Choose Company to view:", value=company_list[0], options=company_list)
 com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
 def category_update(attrname, old, new):
+    # Update the category
     cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
     cat_complaints.text = "Total Number of Complaints in the {} Category:".format(cat_sel.value)
     cat_comp_val.text = str(raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].sum())
+    # Update the graph with the new values
+    rlabels = raw_list[cat_sel.value]
+    rvalues = raw_dfs[cat_df][raw_dfs[cat_df].isin([com_sel.value]).any(1)].iloc[:,2].to_list()
+    rsource.data = dict(
+        labels=rlabels,
+        values=rvalues,
+        color=Turbo256[::math.floor(256/len(rlabels))][:len(rlabels)]
+    )
+    rtitle = [val for val in raw_titles if cat_sel.value in val]
+    rplot.title.text = rtitle[0]
 
 cat_sel = Select(title="Choose Category to view:", value=raw_category[0], options=raw_category)
 cat_sel.on_change('value', category_update)
@@ -247,7 +272,7 @@ mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category:
 mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].iloc[0,1]), align='center')
 
 # Initializing the Data and the Graph
-mlabels = mort_list[0]
+mlabels = mort_list['Issue']
 mvalues = mort_dfs[mort_df][mort_dfs[mort_df].isin([mort_dfs['MortgageTop30Companies_TotalComplaints'].iloc[0,0]]).any(1)].iloc[:,1]
 mcolor = Turbo256[::math.floor(256/len(mlabels))][:len(mlabels)]
 msource = ColumnDataSource(data={'labels': mlabels, 'values':mvalues, 'color':mcolor})
