@@ -216,9 +216,9 @@ def company_update(attrname, old, new):
     # Update which company is displayed
     tot_complaints.text = "Total Number of Complaints for {}:".format(com_sel.value)
     tot_comp_val.text = str(raw_dfs['Top30Companies_TotalComplaints'][raw_dfs['Top30Companies_TotalComplaints'].isin([com_sel.value]).any(1)].iloc[:,1].sum())
+    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
     if cat_sel.value != 'Product':
         # Update the category
-        cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
         cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
         cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
         # Update the graph with the new values
@@ -251,12 +251,12 @@ com_sel.on_change('value', company_update)
 
 # Creating the selector for the category
 def category_update(attrname, old, new):
+    cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
     if cat_sel.value != 'Product':
         prod_sel.visible = True
         cat_complaints.visible = True
         cat_comp_val.visible = True
         # Update the category
-        cat_df = '{}_complaints_TopCompanies'.format(cat_sel.value)
         cat_complaints.text = "Total Number of Complaints in the {} Category for sub-category {}:".format(cat_sel.value, prod_sel.value)
         cat_comp_val.text = str(raw_dfs[cat_df].groupby(['Company','Product']).get_group((com_sel.value, prod_sel.value)).iloc[:,2].sum())
         # Update the graph with the new values
@@ -326,7 +326,7 @@ tot_mort_comp_val = Paragraph(text=str(mort_dfs['MortgageTop30Companies_TotalCom
 # Defining which category I'm after and setting up the total number of categorical complaints text
 mort_df = 'Mortgage_{}_complaints_TopCompanies'.format(mort_category[0])
 mort_complaints = Paragraph(text="Total Number of Complaints in the {} Category for sub-category {}:".format(mort_category[0], mort_list['Issue'][-1]), align='center')
-mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].groupby(['Company']).get_group((mcompany_list[0])).iloc[:,1].sum()), align='center')
+mort_comp_val = Paragraph(text=str(mort_dfs[mort_df].groupby(['Company']).get_group((mcompany_list[0])).iloc[-1,1].sum()), align='center')
 
 # Initializing the Data and the Graph
 mlabels = mort_list['Issue']
